@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="git-deploy,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="逆光之数" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="server 准备工作：这些工作都在root或有管理权限的帐号下进行，下面以root为用户，切换到其他用户的时候会提示确保安装了git为了安全起见，新建一个专门用于代码部署的无特权用户12useradd -m appspasswd apps //设置该用户的密码，也可根据喜好配置成免密码登陆新建一个目录作为要部署代码的根目录。  12mkdir -p /apps/web/www/gitmkdir">
+<meta name="keywords" content="git-deploy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用git做服务器端代码的部署">
+<meta property="og:url" content="http://wiki.deno.vip/2017/09/23/git-deploy/index.html">
+<meta property="og:site_name" content="逆光之数">
+<meta property="og:description" content="server 准备工作：这些工作都在root或有管理权限的帐号下进行，下面以root为用户，切换到其他用户的时候会提示确保安装了git为了安全起见，新建一个专门用于代码部署的无特权用户12useradd -m appspasswd apps //设置该用户的密码，也可根据喜好配置成免密码登陆新建一个目录作为要部署代码的根目录。  12mkdir -p /apps/web/www/gitmkdir">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-06-24T07:17:07.973Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用git做服务器端代码的部署">
+<meta name="twitter:description" content="server 准备工作：这些工作都在root或有管理权限的帐号下进行，下面以root为用户，切换到其他用户的时候会提示确保安装了git为了安全起见，新建一个专门用于代码部署的无特权用户12useradd -m appspasswd apps //设置该用户的密码，也可根据喜好配置成免密码登陆新建一个目录作为要部署代码的根目录。  12mkdir -p /apps/web/www/gitmkdir">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wiki.deno.vip/2017/09/23/git-deploy/">
+
+
+
+
+
+  <title>使用git做服务器端代码的部署 | 逆光之数</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?99fdfc9b175168234c99040e3ce8a56f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">逆光之数</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wiki.deno.vip/2017/09/23/git-deploy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="slmono.hfeng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逆光之数">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">使用git做服务器端代码的部署</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-23T08:08:00+08:00">
+                2017-09-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="server-准备工作："><a href="#server-准备工作：" class="headerlink" title="server 准备工作："></a>server 准备工作：</h3><h4 id="这些工作都在root或有管理权限的帐号下进行，下面以root为用户，切换到其他用户的时候会提示"><a href="#这些工作都在root或有管理权限的帐号下进行，下面以root为用户，切换到其他用户的时候会提示" class="headerlink" title="这些工作都在root或有管理权限的帐号下进行，下面以root为用户，切换到其他用户的时候会提示"></a>这些工作都在root或有管理权限的帐号下进行，下面以root为用户，切换到其他用户的时候会提示</h4><h4 id="确保安装了git"><a href="#确保安装了git" class="headerlink" title="确保安装了git"></a>确保安装了git</h4><h4 id="为了安全起见，新建一个专门用于代码部署的无特权用户"><a href="#为了安全起见，新建一个专门用于代码部署的无特权用户" class="headerlink" title="为了安全起见，新建一个专门用于代码部署的无特权用户"></a>为了安全起见，新建一个专门用于代码部署的无特权用户</h4><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">useradd -m apps</span><br><span class="line">passwd apps //设置该用户的密码，也可根据喜好配置成免密码登陆</span><br></pre></td></tr></table></figure></code></pre><h4 id="新建一个目录作为要部署代码的根目录。"><a href="#新建一个目录作为要部署代码的根目录。" class="headerlink" title="新建一个目录作为要部署代码的根目录。"></a>新建一个目录作为要部署代码的根目录。</h4>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /apps/web/www/git</span><br><span class="line">mkdir -p /apps/web/www/html</span><br></pre></td></tr></table></figure>
+
+<p>  这里建立git目录和html目录，是为了将代码和.git分离出来。<br>  在nginx的root中，直接设置<code>/apps/web/www/html</code>就不用担心.git之类的问题了。</p>
+<h4 id="将这个目录的属主和属组都改为上面新建的用户apps"><a href="#将这个目录的属主和属组都改为上面新建的用户apps" class="headerlink" title="将这个目录的属主和属组都改为上面新建的用户apps"></a>将这个目录的属主和属组都改为上面新建的用户apps</h4><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /apps/web/www</span><br><span class="line">chown apps:apps git</span><br></pre></td></tr></table></figure></code></pre><h4 id="切换到部署代码的专用用户su-apps"><a href="#切换到部署代码的专用用户su-apps" class="headerlink" title="切换到部署代码的专用用户su apps"></a>切换到部署代码的专用用户<code>su apps</code></h4><h4 id="进入项目根目录，初始化为git仓库"><a href="#进入项目根目录，初始化为git仓库" class="headerlink" title="进入项目根目录，初始化为git仓库"></a>进入项目根目录，初始化为git仓库</h4><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /apps/web/www/git</span><br><span class="line">git init</span><br></pre></td></tr></table></figure></code></pre><p>  注意：这里千万不要用<code>git --bare init</code>，一旦使用后续的<code>git checkout -f</code>是检不出来代码的。</p>
+<h4 id="【重要】让仓库接受代码提交"><a href="#【重要】让仓库接受代码提交" class="headerlink" title="【重要】让仓库接受代码提交"></a>【重要】让仓库接受代码提交</h4><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config receive.denyCurrentBranch ignore</span><br><span class="line">git config core.worktree /apps/web/www/html</span><br><span class="line">git config --bool receive.denyNonFastForwards false  //禁止强制推送</span><br></pre></td></tr></table></figure></code></pre><p>至此，一个空的git仓库就在服务器上建好了，仓库的地址为：<br><code>ssh://apps@ip/apps/web/www/git/.git</code></p>
+<h3 id="local-准备工作："><a href="#local-准备工作：" class="headerlink" title="local 准备工作："></a>local 准备工作：</h3><h4 id="通过git-clone或git-pull从github或gitlab仓库上将代码拉取到本地"><a href="#通过git-clone或git-pull从github或gitlab仓库上将代码拉取到本地" class="headerlink" title="通过git clone或git pull从github或gitlab仓库上将代码拉取到本地"></a>通过<code>git clone</code>或<code>git pull</code>从github或gitlab仓库上将代码拉取到本地</h4><h4 id="将服务器添加到远程仓库列表，使用名字来区分不同的服务器，如服务器可以叫做server"><a href="#将服务器添加到远程仓库列表，使用名字来区分不同的服务器，如服务器可以叫做server" class="headerlink" title="将服务器添加到远程仓库列表，使用名字来区分不同的服务器，如服务器可以叫做server"></a>将服务器添加到远程仓库列表，使用名字来区分不同的服务器，如服务器可以叫做server</h4><p>   <code>git remote add server ssh://apps@ip/apps/web/www/git/.git</code></p>
+<h4 id="将本地代码提交到测试服务器上面"><a href="#将本地代码提交到测试服务器上面" class="headerlink" title="将本地代码提交到测试服务器上面"></a>将本地代码提交到测试服务器上面</h4><p>   <code>git push server master</code></p>
+<h3 id="server-操作："><a href="#server-操作：" class="headerlink" title="server 操作："></a>server 操作：</h3><h4 id="更新server，git仓库状态并检出文件"><a href="#更新server，git仓库状态并检出文件" class="headerlink" title="更新server，git仓库状态并检出文件"></a>更新server，git仓库状态并检出文件</h4>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /apps/web/html/git</span><br><span class="line">git update-server-info</span><br><span class="line">git checkout -f</span><br></pre></td></tr></table></figure>
+
+<h4 id="检查是不是将文件更新进来了git-status"><a href="#检查是不是将文件更新进来了git-status" class="headerlink" title="检查是不是将文件更新进来了git status"></a>检查是不是将文件更新进来了<code>git status</code></h4><h4 id="设置服务器端更新hook：post-update"><a href="#设置服务器端更新hook：post-update" class="headerlink" title="设置服务器端更新hook：post-update"></a>设置服务器端更新hook：post-update</h4><p>   <code>cd .git/hooks</code><br>   新建 post-receive 或将 post-receive.sample 重命名为post-receive<code>touch post-receive</code>或则<br>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv post-receive.sample post-receive</span><br><span class="line">vim post-receive</span><br></pre></td></tr></table></figure></p>
+<p>   将如下内容复制到文件中：<br>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line">unset GIT_DIR</span><br><span class="line">cd ..</span><br><span class="line">git checkout -f</span><br></pre></td></tr></table></figure></p>
+<p>注: 第3步的操作将post-receive 替换为 post-update也可以，<br>不过需要先将post-update中的<code>exec git update-server-info</code>这一行删掉</p>
+<h3 id="后续代码的更新："><a href="#后续代码的更新：" class="headerlink" title="后续代码的更新："></a>后续代码的更新：</h3><h4 id="github-有更新的时候pull更新local"><a href="#github-有更新的时候pull更新local" class="headerlink" title="github 有更新的时候pull更新local"></a>github 有更新的时候pull更新local</h4><h4 id="然后本地先push到test-server进行测试"><a href="#然后本地先push到test-server进行测试" class="headerlink" title="然后本地先push到test-server进行测试"></a>然后本地先push到test-server进行测试</h4><h4 id="然后在本地测试，测试通过之后pust到prd上线"><a href="#然后在本地测试，测试通过之后pust到prd上线" class="headerlink" title="然后在本地测试，测试通过之后pust到prd上线"></a>然后在本地测试，测试通过之后pust到prd上线</h4><h4 id="代码的回滚："><a href="#代码的回滚：" class="headerlink" title="代码的回滚："></a>代码的回滚：</h4><ul>
+<li><p>服务器端回滚：推荐<code>git reset --hard HEAD^</code></p>
+</li>
+<li><p>本地仓库回滚：无需登陆服务器即可实现代码回滚，<code>git reset HEAD^</code>保留代码回滚，</p>
+<p>使用<code>git push remote_name local_branch_name -f</code> 强制推送</p>
+</li>
+</ul>
+<h3 id="使用过程中需要注意的问题："><a href="#使用过程中需要注意的问题：" class="headerlink" title="使用过程中需要注意的问题："></a>使用过程中需要注意的问题：</h3><ul>
+<li>需要约定好git不能更新的操作要怎么处理，比如新增数据库的字段，新安装必要的扩展等</li>
+<li>充分利用好git的hook功能，比如pre-commit可用于提交代码前进行单元测试等，但是hook做的操作要尽量简单</li>
+</ul>
+<h3 id="git其他操作"><a href="#git其他操作" class="headerlink" title="git其他操作"></a>git其他操作</h3><p>存储当前的版本号，如：<code>git log –pretty -1 | awk ‘/^commit/{print $2}’</code></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/git-deploy/" rel="tag"># git-deploy</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/22/git-tips/" rel="next" title="git单操作集锦">
+                <i class="fa fa-chevron-left"></i> git单操作集锦
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/24/linux-tips/" rel="prev" title="Linux小操作集锦">
+                Linux小操作集锦 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">slmono.hfeng</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#server-准备工作："><span class="nav-number">1.</span> <span class="nav-text">server 准备工作：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#这些工作都在root或有管理权限的帐号下进行，下面以root为用户，切换到其他用户的时候会提示"><span class="nav-number">1.1.</span> <span class="nav-text">这些工作都在root或有管理权限的帐号下进行，下面以root为用户，切换到其他用户的时候会提示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#确保安装了git"><span class="nav-number">1.2.</span> <span class="nav-text">确保安装了git</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为了安全起见，新建一个专门用于代码部署的无特权用户"><span class="nav-number">1.3.</span> <span class="nav-text">为了安全起见，新建一个专门用于代码部署的无特权用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新建一个目录作为要部署代码的根目录。"><span class="nav-number">1.4.</span> <span class="nav-text">新建一个目录作为要部署代码的根目录。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将这个目录的属主和属组都改为上面新建的用户apps"><span class="nav-number">1.5.</span> <span class="nav-text">将这个目录的属主和属组都改为上面新建的用户apps</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#切换到部署代码的专用用户su-apps"><span class="nav-number">1.6.</span> <span class="nav-text">切换到部署代码的专用用户su apps</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进入项目根目录，初始化为git仓库"><span class="nav-number">1.7.</span> <span class="nav-text">进入项目根目录，初始化为git仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【重要】让仓库接受代码提交"><span class="nav-number">1.8.</span> <span class="nav-text">【重要】让仓库接受代码提交</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#local-准备工作："><span class="nav-number">2.</span> <span class="nav-text">local 准备工作：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#通过git-clone或git-pull从github或gitlab仓库上将代码拉取到本地"><span class="nav-number">2.1.</span> <span class="nav-text">通过git clone或git pull从github或gitlab仓库上将代码拉取到本地</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将服务器添加到远程仓库列表，使用名字来区分不同的服务器，如服务器可以叫做server"><span class="nav-number">2.2.</span> <span class="nav-text">将服务器添加到远程仓库列表，使用名字来区分不同的服务器，如服务器可以叫做server</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将本地代码提交到测试服务器上面"><span class="nav-number">2.3.</span> <span class="nav-text">将本地代码提交到测试服务器上面</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#server-操作："><span class="nav-number">3.</span> <span class="nav-text">server 操作：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#更新server，git仓库状态并检出文件"><span class="nav-number">3.1.</span> <span class="nav-text">更新server，git仓库状态并检出文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#检查是不是将文件更新进来了git-status"><span class="nav-number">3.2.</span> <span class="nav-text">检查是不是将文件更新进来了git status</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置服务器端更新hook：post-update"><span class="nav-number">3.3.</span> <span class="nav-text">设置服务器端更新hook：post-update</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后续代码的更新："><span class="nav-number">4.</span> <span class="nav-text">后续代码的更新：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#github-有更新的时候pull更新local"><span class="nav-number">4.1.</span> <span class="nav-text">github 有更新的时候pull更新local</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#然后本地先push到test-server进行测试"><span class="nav-number">4.2.</span> <span class="nav-text">然后本地先push到test-server进行测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#然后在本地测试，测试通过之后pust到prd上线"><span class="nav-number">4.3.</span> <span class="nav-text">然后在本地测试，测试通过之后pust到prd上线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码的回滚："><span class="nav-number">4.4.</span> <span class="nav-text">代码的回滚：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用过程中需要注意的问题："><span class="nav-number">5.</span> <span class="nav-text">使用过程中需要注意的问题：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git其他操作"><span class="nav-number">6.</span> <span class="nav-text">git其他操作</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">slmono.hfeng</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[GitLab Community Edition]]></title>
+    <url>%2F2019%2F05%2F12%2Fgitlab-community%2F</url>
+    <content type="text"><![CDATA[注：gitlab 备份、恢复、迁移 gitlab docker-compose.yml1234567891011121314151617version: &apos;3.6&apos;services: gitlab: container_name: gitlab image: gitlab/gitlab-ce:latest restart: always environment: GITLAB_OMNIBUS_CONFIG: | external_url &apos;http://gitlab.deno.vip&apos; ports: - &quot;80:80&quot; - &quot;443:443&quot; - &quot;22:22&quot; volumes: - &quot;/apps/gitlab/config:/etc/gitlab&quot; - &quot;/apps/gitlab/logs:/var/log/gitlab&quot; - &quot;/apps/gitlab/data:/var/opt/gitlab&quot; /apps 最好是数据盘挂载路径 gitlab与宿主机ssh端口最好设置为非22，当然迁移除外。]]></content>
+      <tags>
+        <tag>centos-gitlab</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Let's Encrypt SSL证书]]></title>
+    <url>%2F2019%2F03%2F22%2Flet-encrypt%2F</url>
+    <content type="text"><![CDATA[备注：Let’s Encrypt SSL证书安装教程 事故场景通过certbot安装Let’s Encrypt https证书，在安卓手机的微信小程序中报错：wx.request:fail ssl hand shake error 证书鉴定通过SSL服务器证书安装检查器检查证书发现 12345678910证书2证书使用者： Let&apos;s Encrypt Authority X3证书颁发者： ISRG Root X1有效期： 从 2016/10/6 到 2021/10/6签名算法： sha256RSA公钥长度： 2048位 (RSA 算法)SHA1指纹： 1b 23 67 53 54 fc ad 90 11 9d 88 07 50 15 ea 17 ad d5 27 d8SHA256指纹： 73 1d 3d 9c fa a0 61 48 7a 1d 71 44 5a 42 f6 7d f0 af ca 2a 6c 2d 2f 98 ff 7b 3c e1 12 b1 f5 68证书来源： 缺失证书状态： 错误： 服务器缺少中间证书 问题解决通过获取证书信息 及 下载中间证书将letsencrypt证书cert1.pem生成中间证书文件chain.crt下载下来，打开中间证书文件chain.crt将里面的内容追加到fullchain1.pem，保存。解决问题。]]></content>
+      <tags>
+        <tag>https</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[django-docker镜像实践]]></title>
+    <url>%2F2018%2F11%2F25%2Flinux-docker%2F</url>
+    <content type="text"><![CDATA[linux server安装docker ce参考：阿里云安装Docker CE推荐手动安装，按需决定是否更改镜像源。 linux server安装docker-composecentos 安装docker-compose，建议通过pip安装。当然亦可以直接下载，安装docker-compose注意版本。 1sudo curl -L https://github.com/docker/compose/releases/download/1.13.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose 镜像打包 本地下载镜像 docker pull centos 创建项目Dockerfile 123FROM centosRUN mkdir -p /apps/web/leeteeADD . /apps/web/leetee 进入容器 docker run -it dockerimage_id /bin/bash 容器内部安装项目需要的环境，创建非root用户，并设置权限。requirements.txt 123456789101112131415161718192021222324252627282930313233343536373839404142amqp==2.3.2anyjson==0.3.3appnope==0.1.0backcall==0.1.0billiard==3.5.0.4celery==4.2.0certifi==2018.4.16chardet==3.0.4decorator==4.3.0Django==2.0.4django-extensions==2.1.3django-grappelli==2.12.1djangorestframework==3.8.2docutils==0.14gevent==1.3.7greenlet==0.4.15idna==2.6ipython==6.4.0ipython-genutils==0.2.0jedi==0.12.0kombu==4.2.0meld3==1.0.2parso==0.2.1pexpect==4.6.0pickleshare==0.7.4Pillow==5.3.0prompt-toolkit==1.0.15ptyprocess==0.5.2Pygments==2.2.0pytz==2018.4redis==2.10.6requests==2.18.4simplegeneric==0.8.1simplejson==3.16.0six==1.11.0supervisor==4.0.0.dev0traitlets==4.3.2urllib3==1.22uWSGI==2.0.17.1uwsgitop==0.10vine==1.1.4wcwidth==0.1.7 删除项目文件 rm -rf /apps/web/leetee/* 镜像打包 docker commit -a &#39;.&#39; -m &#39;.&#39; container_id shllmoon/leetee 镜像上传 docker push shllmoon/leetee 镜像生成 个人使用的是docker官方地址https://registry.docker-cn.com。镜像源：shllmoon/leetee uwsgi.ini文件 12345678910111213[uwsgi]chdir=/apps/web/leeteemodule=leetee.wsgisocket=0.0.0.0:8000chmod-socket=666gevent=100max-requests=2000master=trueworkers=2pidfile=/apps/web/data/uwsgi-leetee.pidstats=/apps/web/data/sock-leetee.backend.sockdisable-logging=truevacuum=true supervisord.conf文件 1234567891011121314151617181920212223242526272829303132333435[program:django]directory=/apps/web/leeteecommand=/apps/python3/bin/uwsgi --ini /apps/web/leetee/uwsgi.inipriority=1numprocs=1autostart=truestartsecs=3autorestart=unexpectedexitcodes=0;redirect_stderr=truestdout_logfile_maxbytes=500MBstdout_logfile_backups=20stderr_logfile=/apps/web/data/logs/web.logstdout_logfile=/apps/web/data/logs/web.log[group:web_server]programs=django[unix_http_server]file=/apps/web/data/supervisor.sockchmod=0777username=appspassword=apps123[supervisord]logfile=/apps/web/data/logs/supervisord_shop_log.logstderr_logfile=/apps/web/data/logs/supervisord_err.logstdout_logfile=/apps/web/data/logs/supervisord_out.logpidfile=/apps/web/data/supervisord.pid[supervisorctl]serverurl=unix:///apps/web/data/supervisor.sock[rpcinterface:supervisor]supervisor.rpcinterface_factory=supervisor.rpcinterface:make_main_rpcinterface Dockerfile文件 1FROM shllmoon/leetee docker-compose.yml文件 12345678910111213141516version: &apos;2&apos;services: python: build: . privileged: true user: ubuntu ports: - &quot;8000:8000&quot; volumes: - &quot;/apps/web/www/leetee/leetee:/apps/web/leetee&quot; - &quot;/apps/web/www/leetee/logs:/apps/web/data/logs&quot; command: &quot;/apps/python3/bin/supervisord -n -c /apps/web/leetee/supervisord.conf&quot; restart: always ps：使用该镜像需要注意： 系统存在ubuntu用户，并且ubuntu用户的uid和gid都为500 12usermod -u 500 ubuntugroupmod -g 500 ubuntu ubuntu用户需要有写log目录的权限 sudo chown -R ubuntu:ubuntu /apps/web/www/leetee/logs]]></content>
+      <tags>
+        <tag>centos-docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[centos 安装mysql]]></title>
+    <url>%2F2018%2F03%2F22%2Fcentos-mysql%2F</url>
+    <content type="text"><![CDATA[注：该文档只适用centos7以下（不包括centos7），安装mysql5.6。文档中的mysql5.6相对于mysql5.7存在一些意想不到的问题。比如int类型的获取到undefined会被mysql处理成default值。 检测系统是否安装mysqlyum list installed | grep mysql 安装mysql安装包12wget http://repo.mysql.com/mysql-community-release-el6-5.noarch.rpmrpm -ivh mysql-community-release-el6-5.noarch.rpm 查看可安装的mysql列表yum list|grep mysql选择需要安装，一般只需要安装client和server即可。 12sudo yum install mysql-community-server.x86_64 -ysudo yum install mysql-community-client.x86_64 -y 启动mysqlservice mysqld start mysql设置密码mysql刚刚安装完的时候，root用户的密码默认是空的。需要用mysql的root用户登录，并修改密码： 1234mysql -uroot -puse mysql;update user set password=PASSWORD(&quot;输入root用户密码&quot;) where User=&apos;root&apos;;flush privileges; 查看mysql是否自启动,并且设置开启自启动12chkconfig --list | grep mysqldchkconfig mysqld on mysql安全设置mysql_secure_installation ps：在mysql安全设置中，不要允许root用户远程登陆。 mysql设置远程登陆用户12GRANT ALL PRIVILEGES ON *.* TO admin@&quot;%&quot; IDENTIFIED BY &apos;password123&apos; WITH GRANT OPTION;update db set host = &apos;%&apos; where user = &apos;admin&apos;;]]></content>
+      <tags>
+        <tag>centos-mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux小操作集锦]]></title>
+    <url>%2F2017%2F09%2F24%2Flinux-tips%2F</url>
+    <content type="text"><![CDATA[root密码修改12345chattr -i /etc/passwdchattr -i /etc/shadowpasswd rootchattr +i /etc/passwdchattr +i /etc/shadow 1出现permission问题时，执行mount / -rw -o remount即可完成root密码修改。 当然这里面的操作都是在recovery(root)模式下进行的。 linux ssh不带密码ssh apps@ip一般出现： 1apps@ip: Permission denied (publickey,gssapi-keyex,gssapi-with-mic) 这种信息。直接的原因是server上apps用户的 authorized_keys权限不够。 解决方法：在server 上，用apps 执行：chmod 644 ~/.ssh/authorized_keys 另附：linux清除用户密码：root下执行： passwd -d apps linux oh-my-zshserver中，以root方式login，按照上面的链接无法生效。只是因为没有/root/.zshrc文件，最直接的解决方法：cp /root/.oh-my-zsh/templates/zshrc.zsh-template /root/.zshrc ps：zsh切换到bash-exec bash linux 查看本机外网IP curl cip.cc curl ifconfig.me]]></content>
+      <tags>
+        <tag>linux-tips</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[使用git做服务器端代码的部署]]></title>
+    <url>%2F2017%2F09%2F23%2Fgit-deploy%2F</url>
+    <content type="text"><![CDATA[server 准备工作：这些工作都在root或有管理权限的帐号下进行，下面以root为用户，切换到其他用户的时候会提示确保安装了git为了安全起见，新建一个专门用于代码部署的无特权用户12useradd -m appspasswd apps //设置该用户的密码，也可根据喜好配置成免密码登陆新建一个目录作为要部署代码的根目录。 12mkdir -p /apps/web/www/gitmkdir -p /apps/web/www/html 这里建立git目录和html目录，是为了将代码和.git分离出来。 在nginx的root中，直接设置/apps/web/www/html就不用担心.git之类的问题了。 将这个目录的属主和属组都改为上面新建的用户apps12cd /apps/web/wwwchown apps:apps git切换到部署代码的专用用户su apps进入项目根目录，初始化为git仓库12cd /apps/web/www/gitgit init 注意：这里千万不要用git --bare init，一旦使用后续的git checkout -f是检不出来代码的。 【重要】让仓库接受代码提交123git config receive.denyCurrentBranch ignoregit config core.worktree /apps/web/www/htmlgit config --bool receive.denyNonFastForwards false //禁止强制推送至此，一个空的git仓库就在服务器上建好了，仓库的地址为：ssh://apps@ip/apps/web/www/git/.git local 准备工作：通过git clone或git pull从github或gitlab仓库上将代码拉取到本地将服务器添加到远程仓库列表，使用名字来区分不同的服务器，如服务器可以叫做server git remote add server ssh://apps@ip/apps/web/www/git/.git 将本地代码提交到测试服务器上面 git push server master server 操作：更新server，git仓库状态并检出文件 123cd /apps/web/html/gitgit update-server-infogit checkout -f 检查是不是将文件更新进来了git status设置服务器端更新hook：post-update cd .git/hooks 新建 post-receive 或将 post-receive.sample 重命名为post-receivetouch post-receive或则 12mv post-receive.sample post-receivevim post-receive 将如下内容复制到文件中： 1234#!/bin/shunset GIT_DIRcd ..git checkout -f 注: 第3步的操作将post-receive 替换为 post-update也可以，不过需要先将post-update中的exec git update-server-info这一行删掉 后续代码的更新：github 有更新的时候pull更新local然后本地先push到test-server进行测试然后在本地测试，测试通过之后pust到prd上线代码的回滚： 服务器端回滚：推荐git reset --hard HEAD^ 本地仓库回滚：无需登陆服务器即可实现代码回滚，git reset HEAD^保留代码回滚， 使用git push remote_name local_branch_name -f 强制推送 使用过程中需要注意的问题： 需要约定好git不能更新的操作要怎么处理，比如新增数据库的字段，新安装必要的扩展等 充分利用好git的hook功能，比如pre-commit可用于提交代码前进行单元测试等，但是hook做的操作要尽量简单 git其他操作存储当前的版本号，如：git log –pretty -1 | awk ‘/^commit/{print $2}’]]></content>
+      <tags>
+        <tag>git-deploy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[git单操作集锦]]></title>
+    <url>%2F2017%2F09%2F22%2Fgit-tips%2F</url>
+    <content type="text"><![CDATA[git 合并单个文件1git checkout -p master account/api/views.py git 本地忽略跟踪1git update-index --assume-unchanged /path/to/file]]></content>
+      <tags>
+        <tag>linux-tips</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[人际交往能力：远比你想象的重要]]></title>
+    <url>%2F2017%2F09%2F21%2Fcommunication%2F</url>
+    <content type="text"><![CDATA[需要特别留意的点： 每个人都希望感到自己很重要 轻率地否决同事的想法，往往会起反效果。 换位思考 一个产品的自我修养，思考对他人而言什么才是最重要，什么才是他们需要的。 解决需求或提升效率的表述，一定比所谓的建议或经验更有说服力。 减少争执 注意区分争执和辩论。争执中，任何逻辑都不足以说服人。退一步，有时候可能会赢得不可估量的尊重。]]></content>
+      <tags>
+        <tag>Interpersonal communication</tag>
+      </tags>
+  </entry>
+</search>

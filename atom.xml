@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>逆光之数</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://wiki.deno.vip/"/>
+  <updated>2019-06-24T07:17:07.968Z</updated>
+  <id>http://wiki.deno.vip/</id>
+  
+  <author>
+    <name>slmono.hfeng</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>GitLab Community Edition</title>
+    <link href="http://wiki.deno.vip/2019/05/12/gitlab-community/"/>
+    <id>http://wiki.deno.vip/2019/05/12/gitlab-community/</id>
+    <published>2019-05-12T11:10:00.000Z</published>
+    <updated>2019-06-24T07:17:07.968Z</updated>
+    
+    <content type="html"><![CDATA[<p>注：<a href="https://gitlab.com/help/raketasks/backup_restore.md" target="_blank" rel="noopener">gitlab 备份、恢复、迁移</a></p><h3 id="gitlab-docker-compose-yml"><a href="#gitlab-docker-compose-yml" class="headerlink" title="gitlab docker-compose.yml"></a>gitlab docker-compose.yml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">version: &apos;3.6&apos;</span><br><span class="line">services:</span><br><span class="line">  gitlab:</span><br><span class="line">    container_name: gitlab</span><br><span class="line">    image: gitlab/gitlab-ce:latest</span><br><span class="line">    restart: always</span><br><span class="line">    environment:</span><br><span class="line">      GITLAB_OMNIBUS_CONFIG: |</span><br><span class="line">            external_url &apos;http://gitlab.deno.vip&apos;</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;80:80&quot;</span><br><span class="line">      - &quot;443:443&quot;</span><br><span class="line">      - &quot;22:22&quot;</span><br><span class="line">    volumes:</span><br><span class="line">      - &quot;/apps/gitlab/config:/etc/gitlab&quot;</span><br><span class="line">      - &quot;/apps/gitlab/logs:/var/log/gitlab&quot;</span><br><span class="line">      - &quot;/apps/gitlab/data:/var/opt/gitlab&quot;</span><br></pre></td></tr></table></figure><ul><li>/apps 最好是数据盘挂载路径</li><li>gitlab与宿主机ssh端口最好设置为非22，当然迁移除外。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;注：&lt;a href=&quot;https://gitlab.com/help/raketasks/backup_restore.md&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;gitlab 备份、恢复、迁移&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;gitlab-doc
+      
+    
+    </summary>
+    
+    
+      <category term="centos-gitlab" scheme="http://wiki.deno.vip/tags/centos-gitlab/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Let&#39;s Encrypt SSL证书</title>
+    <link href="http://wiki.deno.vip/2019/03/22/let-encrypt/"/>
+    <id>http://wiki.deno.vip/2019/03/22/let-encrypt/</id>
+    <published>2019-03-22T01:10:00.000Z</published>
+    <updated>2019-06-24T07:17:07.969Z</updated>
+    
+    <content type="html"><![CDATA[<p>备注：<a href="https://zhuanlan.zhihu.com/p/24996258" target="_blank" rel="noopener">Let’s Encrypt SSL证书安装教程</a></p><h4 id="事故场景"><a href="#事故场景" class="headerlink" title="事故场景"></a>事故场景</h4><p>通过certbot安装Let’s Encrypt https证书，在安卓手机的微信小程序中报错：<code>wx.request:fail ssl hand shake error</code></p><h4 id="证书鉴定"><a href="#证书鉴定" class="headerlink" title="证书鉴定"></a>证书鉴定</h4><p>通过<a href="https://www.myssl.cn/tools/check-server-cert.html" target="_blank" rel="noopener">SSL服务器证书安装检查器</a><br>检查证书发现</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">证书2</span><br><span class="line">证书使用者：Let&apos;s Encrypt Authority X3</span><br><span class="line">证书颁发者：ISRG Root X1</span><br><span class="line">有效期：从 2016/10/6 到 2021/10/6</span><br><span class="line">签名算法：sha256RSA</span><br><span class="line">公钥长度：2048位 (RSA 算法)</span><br><span class="line">SHA1指纹：1b 23 67 53 54 fc ad 90 11 9d 88 07 50 15 ea 17 ad d5 27 d8</span><br><span class="line">SHA256指纹：73 1d 3d 9c fa a0 61 48 7a 1d 71 44 5a 42 f6 7d f0 af ca 2a 6c 2d 2f 98 ff 7b 3c e1 12 b1 f5 68</span><br><span class="line">证书来源：缺失证书</span><br><span class="line">状态：错误： 服务器缺少中间证书</span><br></pre></td></tr></table></figure><h4 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h4><p>通过<a href="https://www.myssl.cn/tools/downloadchain.html" target="_blank" rel="noopener">获取证书信息 及 下载中间证书</a>将letsencrypt证书cert1.pem生成中间证书文件chain.crt下载下来，打开中间证书文件chain.crt将里面的内容追加到fullchain1.pem，保存。解决问题。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;备注：&lt;a href=&quot;https://zhuanlan.zhihu.com/p/24996258&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Let’s Encrypt SSL证书安装教程&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;事故场景&quot;&gt;&lt;a href=&quot;
+      
+    
+    </summary>
+    
+    
+      <category term="https" scheme="http://wiki.deno.vip/tags/https/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>django-docker镜像实践</title>
+    <link href="http://wiki.deno.vip/2018/11/25/linux-docker/"/>
+    <id>http://wiki.deno.vip/2018/11/25/linux-docker/</id>
+    <published>2018-11-25T02:10:00.000Z</published>
+    <updated>2019-06-24T07:17:07.975Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="linux-server安装docker-ce"><a href="#linux-server安装docker-ce" class="headerlink" title="linux server安装docker ce"></a>linux server安装docker ce</h4><p>参考：<a href="https://yq.aliyun.com/articles/110806?spm=5176.8351553.0.0.37161991kq7Vrm" target="_blank" rel="noopener">阿里云安装Docker CE</a><br>推荐手动安装，按需决定是否更改镜像源。</p><h4 id="linux-server安装docker-compose"><a href="#linux-server安装docker-compose" class="headerlink" title="linux server安装docker-compose"></a>linux server安装docker-compose</h4><p>centos 安装docker-compose，建议通过pip安装。当然亦可以直接下载，安装docker-compose注意版本。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo curl -L https://github.com/docker/compose/releases/download/1.13.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose</span><br></pre></td></tr></table></figure><h4 id="镜像打包"><a href="#镜像打包" class="headerlink" title="镜像打包"></a>镜像打包</h4><ul><li><p>本地下载镜像 <code>docker pull centos</code></p></li><li><p>创建项目Dockerfile</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FROM centos</span><br><span class="line">RUN mkdir -p /apps/web/leetee</span><br><span class="line">ADD . /apps/web/leetee</span><br></pre></td></tr></table></figure></li><li><p>进入容器 <code>docker run -it dockerimage_id /bin/bash</code></p></li><li><p>容器内部安装项目需要的环境，创建非root用户，并设置权限。requirements.txt</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">amqp==2.3.2</span><br><span class="line">anyjson==0.3.3</span><br><span class="line">appnope==0.1.0</span><br><span class="line">backcall==0.1.0</span><br><span class="line">billiard==3.5.0.4</span><br><span class="line">celery==4.2.0</span><br><span class="line">certifi==2018.4.16</span><br><span class="line">chardet==3.0.4</span><br><span class="line">decorator==4.3.0</span><br><span class="line">Django==2.0.4</span><br><span class="line">django-extensions==2.1.3</span><br><span class="line">django-grappelli==2.12.1</span><br><span class="line">djangorestframework==3.8.2</span><br><span class="line">docutils==0.14</span><br><span class="line">gevent==1.3.7</span><br><span class="line">greenlet==0.4.15</span><br><span class="line">idna==2.6</span><br><span class="line">ipython==6.4.0</span><br><span class="line">ipython-genutils==0.2.0</span><br><span class="line">jedi==0.12.0</span><br><span class="line">kombu==4.2.0</span><br><span class="line">meld3==1.0.2</span><br><span class="line">parso==0.2.1</span><br><span class="line">pexpect==4.6.0</span><br><span class="line">pickleshare==0.7.4</span><br><span class="line">Pillow==5.3.0</span><br><span class="line">prompt-toolkit==1.0.15</span><br><span class="line">ptyprocess==0.5.2</span><br><span class="line">Pygments==2.2.0</span><br><span class="line">pytz==2018.4</span><br><span class="line">redis==2.10.6</span><br><span class="line">requests==2.18.4</span><br><span class="line">simplegeneric==0.8.1</span><br><span class="line">simplejson==3.16.0</span><br><span class="line">six==1.11.0</span><br><span class="line">supervisor==4.0.0.dev0</span><br><span class="line">traitlets==4.3.2</span><br><span class="line">urllib3==1.22</span><br><span class="line">uWSGI==2.0.17.1</span><br><span class="line">uwsgitop==0.10</span><br><span class="line">vine==1.1.4</span><br><span class="line">wcwidth==0.1.7</span><br></pre></td></tr></table></figure></li><li><p>删除项目文件 <code>rm -rf /apps/web/leetee/*</code></p></li><li><p>镜像打包 <code>docker commit -a &#39;.&#39; -m &#39;.&#39; container_id shllmoon/leetee</code></p></li><li><p>镜像上传 <code>docker push shllmoon/leetee</code></p></li></ul><h4 id="镜像生成"><a href="#镜像生成" class="headerlink" title="镜像生成"></a>镜像生成</h4><ul><li><p>个人使用的是docker官方地址<code>https://registry.docker-cn.com</code>。镜像源：<code>shllmoon/leetee</code></p></li><li><p>uwsgi.ini文件</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[uwsgi]</span><br><span class="line">chdir=/apps/web/leetee</span><br><span class="line">module=leetee.wsgi</span><br><span class="line">socket=0.0.0.0:8000</span><br><span class="line">chmod-socket=666</span><br><span class="line">gevent=100</span><br><span class="line">max-requests=2000</span><br><span class="line">master=true</span><br><span class="line">workers=2</span><br><span class="line">pidfile=/apps/web/data/uwsgi-leetee.pid</span><br><span class="line">stats=/apps/web/data/sock-leetee.backend.sock</span><br><span class="line">disable-logging=true</span><br><span class="line">vacuum=true</span><br></pre></td></tr></table></figure></li><li><p>supervisord.conf文件</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">[program:django]</span><br><span class="line">directory=/apps/web/leetee</span><br><span class="line">command=/apps/python3/bin/uwsgi --ini /apps/web/leetee/uwsgi.ini</span><br><span class="line">priority=1</span><br><span class="line">numprocs=1</span><br><span class="line">autostart=true</span><br><span class="line">startsecs=3</span><br><span class="line">autorestart=unexpected</span><br><span class="line">exitcodes=0</span><br><span class="line">;redirect_stderr=true</span><br><span class="line">stdout_logfile_maxbytes=500MB</span><br><span class="line">stdout_logfile_backups=20</span><br><span class="line">stderr_logfile=/apps/web/data/logs/web.log</span><br><span class="line">stdout_logfile=/apps/web/data/logs/web.log</span><br><span class="line"></span><br><span class="line">[group:web_server]</span><br><span class="line">programs=django</span><br><span class="line"></span><br><span class="line">[unix_http_server]</span><br><span class="line">file=/apps/web/data/supervisor.sock</span><br><span class="line">chmod=0777</span><br><span class="line">username=apps</span><br><span class="line">password=apps123</span><br><span class="line"></span><br><span class="line">[supervisord]</span><br><span class="line">logfile=/apps/web/data/logs/supervisord_shop_log.log</span><br><span class="line">stderr_logfile=/apps/web/data/logs/supervisord_err.log</span><br><span class="line">stdout_logfile=/apps/web/data/logs/supervisord_out.log</span><br><span class="line">pidfile=/apps/web/data/supervisord.pid</span><br><span class="line"></span><br><span class="line">[supervisorctl]</span><br><span class="line">serverurl=unix:///apps/web/data/supervisor.sock</span><br><span class="line"></span><br><span class="line">[rpcinterface:supervisor]</span><br><span class="line">supervisor.rpcinterface_factory=supervisor.rpcinterface:make_main_rpcinterface</span><br></pre></td></tr></table></figure></li><li><p>Dockerfile文件</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FROM shllmoon/leetee</span><br></pre></td></tr></table></figure></li><li><p>docker-compose.yml文件</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">version: &apos;2&apos;</span><br><span class="line">services:</span><br><span class="line">  python:</span><br><span class="line">    build: .</span><br><span class="line">    privileged: true</span><br><span class="line">    user: ubuntu</span><br><span class="line"></span><br><span class="line">    ports:</span><br><span class="line">      - &quot;8000:8000&quot;</span><br><span class="line"></span><br><span class="line">    volumes:</span><br><span class="line">      - &quot;/apps/web/www/leetee/leetee:/apps/web/leetee&quot;</span><br><span class="line">      - &quot;/apps/web/www/leetee/logs:/apps/web/data/logs&quot;</span><br><span class="line"></span><br><span class="line">    command: &quot;/apps/python3/bin/supervisord -n -c /apps/web/leetee/supervisord.conf&quot;</span><br><span class="line">    restart: always</span><br></pre></td></tr></table></figure></li></ul><p>ps：<br>使用该镜像需要注意：</p><ol><li><p>系统存在ubuntu用户，并且ubuntu用户的uid和gid都为500</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">usermod -u 500 ubuntu</span><br><span class="line">groupmod -g 500 ubuntu</span><br></pre></td></tr></table></figure></li><li><p>ubuntu用户需要有写log目录的权限 <code>sudo chown -R ubuntu:ubuntu /apps/web/www/leetee/logs</code></p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;linux-server安装docker-ce&quot;&gt;&lt;a href=&quot;#linux-server安装docker-ce&quot; class=&quot;headerlink&quot; title=&quot;linux server安装docker ce&quot;&gt;&lt;/a&gt;linux server安装doc
+      
+    
+    </summary>
+    
+    
+      <category term="centos-docker" scheme="http://wiki.deno.vip/tags/centos-docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>centos 安装mysql</title>
+    <link href="http://wiki.deno.vip/2018/03/22/centos-mysql/"/>
+    <id>http://wiki.deno.vip/2018/03/22/centos-mysql/</id>
+    <published>2018-03-22T01:10:00.000Z</published>
+    <updated>2019-06-24T07:17:07.971Z</updated>
+    
+    <content type="html"><![CDATA[<p>注：该文档只适用centos7以下（不包括centos7），安装mysql5.6。文档中的mysql5.6相对于mysql5.7存在一些意想不到的问题。比如int类型的获取到undefined会被mysql处理成default值。</p><h4 id="检测系统是否安装mysql"><a href="#检测系统是否安装mysql" class="headerlink" title="检测系统是否安装mysql"></a>检测系统是否安装mysql</h4><p><code>yum list installed | grep mysql</code></p><h4 id="安装mysql安装包"><a href="#安装mysql安装包" class="headerlink" title="安装mysql安装包"></a>安装mysql安装包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget http://repo.mysql.com/mysql-community-release-el6-5.noarch.rpm</span><br><span class="line">rpm -ivh mysql-community-release-el6-5.noarch.rpm</span><br></pre></td></tr></table></figure><h4 id="查看可安装的mysql列表"><a href="#查看可安装的mysql列表" class="headerlink" title="查看可安装的mysql列表"></a>查看可安装的mysql列表</h4><p><code>yum list|grep mysql</code>选择需要安装，一般只需要安装client和server即可。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install mysql-community-server.x86_64 -y</span><br><span class="line">sudo yum install mysql-community-client.x86_64 -y</span><br></pre></td></tr></table></figure><h4 id="启动mysql"><a href="#启动mysql" class="headerlink" title="启动mysql"></a>启动mysql</h4><p><code>service mysqld start</code></p><h4 id="mysql设置密码"><a href="#mysql设置密码" class="headerlink" title="mysql设置密码"></a>mysql设置密码</h4><p>mysql刚刚安装完的时候，root用户的密码默认是空的。需要用mysql的root用户登录，并修改密码：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p</span><br><span class="line">use mysql;</span><br><span class="line">update user set password=PASSWORD(&quot;输入root用户密码&quot;) where User=&apos;root&apos;;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure><h4 id="查看mysql是否自启动-并且设置开启自启动"><a href="#查看mysql是否自启动-并且设置开启自启动" class="headerlink" title="查看mysql是否自启动,并且设置开启自启动"></a>查看mysql是否自启动,并且设置开启自启动</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chkconfig --list | grep mysqld</span><br><span class="line">chkconfig mysqld on</span><br></pre></td></tr></table></figure><h4 id="mysql安全设置"><a href="#mysql安全设置" class="headerlink" title="mysql安全设置"></a>mysql安全设置</h4><p><code>mysql_secure_installation</code></p><p>ps：在mysql安全设置中，不要允许root用户远程登陆。</p><h4 id="mysql设置远程登陆用户"><a href="#mysql设置远程登陆用户" class="headerlink" title="mysql设置远程登陆用户"></a>mysql设置远程登陆用户</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GRANT ALL PRIVILEGES ON *.* TO admin@&quot;%&quot; IDENTIFIED BY &apos;password123&apos; WITH GRANT OPTION;</span><br><span class="line">update db set host = &apos;%&apos; where user = &apos;admin&apos;;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;注：该文档只适用centos7以下（不包括centos7），安装mysql5.6。文档中的mysql5.6相对于mysql5.7存在一些意想不到的问题。比如int类型的获取到undefined会被mysql处理成default值。&lt;/p&gt;
+&lt;h4 id=&quot;检测系统是否安装m
+      
+    
+    </summary>
+    
+    
+      <category term="centos-mysql" scheme="http://wiki.deno.vip/tags/centos-mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux小操作集锦</title>
+    <link href="http://wiki.deno.vip/2017/09/24/linux-tips/"/>
+    <id>http://wiki.deno.vip/2017/09/24/linux-tips/</id>
+    <published>2017-09-24T01:12:00.000Z</published>
+    <updated>2019-06-24T07:17:07.974Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="root密码修改"><a href="#root密码修改" class="headerlink" title="root密码修改"></a>root密码修改</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">chattr -i /etc/passwd</span><br><span class="line">chattr -i /etc/shadow</span><br><span class="line">passwd root</span><br><span class="line">chattr +i /etc/passwd</span><br><span class="line">chattr +i /etc/shadow</span><br></pre></td></tr></table></figure><p>1出现permission问题时，执行<code>mount / -rw -o remount</code>即可完成root密码修改。</p><p>当然这里面的操作都是在recovery(root)模式下进行的。</p><h3 id="linux-ssh不带密码"><a href="#linux-ssh不带密码" class="headerlink" title="linux ssh不带密码"></a>linux ssh不带密码</h3><p><code>ssh apps@ip</code>一般出现：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apps@ip: Permission denied (publickey,gssapi-keyex,gssapi-with-mic)</span><br></pre></td></tr></table></figure><p>这种信息。直接的原因是server上apps用户的 authorized_keys权限不够。</p><p>解决方法：在server 上，用apps 执行：<code>chmod 644 ~/.ssh/authorized_keys</code></p><p>另附：<br>linux清除用户密码：root下执行： <code>passwd -d apps</code></p><h3 id="linux-oh-my-zsh"><a href="#linux-oh-my-zsh" class="headerlink" title="linux oh-my-zsh"></a>linux oh-my-zsh</h3><p>server中，以root方式login，按照上面的链接无法生效。<br>只是因为没有<code>/root/.zshrc</code>文件，最直接的解决方法：<br><code>cp /root/.oh-my-zsh/templates/zshrc.zsh-template /root/.zshrc</code></p><p>ps：zsh切换到<code>bash-exec bash</code></p><h3 id="linux-查看本机外网IP"><a href="#linux-查看本机外网IP" class="headerlink" title="linux 查看本机外网IP"></a>linux 查看本机外网IP</h3><ol><li><code>curl cip.cc</code></li><li><code>curl ifconfig.me</code></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;root密码修改&quot;&gt;&lt;a href=&quot;#root密码修改&quot; class=&quot;headerlink&quot; title=&quot;root密码修改&quot;&gt;&lt;/a&gt;root密码修改&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td cl
+      
+    
+    </summary>
+    
+    
+      <category term="linux-tips" scheme="http://wiki.deno.vip/tags/linux-tips/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用git做服务器端代码的部署</title>
+    <link href="http://wiki.deno.vip/2017/09/23/git-deploy/"/>
+    <id>http://wiki.deno.vip/2017/09/23/git-deploy/</id>
+    <published>2017-09-23T00:08:00.000Z</published>
+    <updated>2019-06-24T07:17:07.973Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="server-准备工作："><a href="#server-准备工作：" class="headerlink" title="server 准备工作："></a>server 准备工作：</h3><h4 id="这些工作都在root或有管理权限的帐号下进行，下面以root为用户，切换到其他用户的时候会提示"><a href="#这些工作都在root或有管理权限的帐号下进行，下面以root为用户，切换到其他用户的时候会提示" class="headerlink" title="这些工作都在root或有管理权限的帐号下进行，下面以root为用户，切换到其他用户的时候会提示"></a>这些工作都在root或有管理权限的帐号下进行，下面以root为用户，切换到其他用户的时候会提示</h4><h4 id="确保安装了git"><a href="#确保安装了git" class="headerlink" title="确保安装了git"></a>确保安装了git</h4><h4 id="为了安全起见，新建一个专门用于代码部署的无特权用户"><a href="#为了安全起见，新建一个专门用于代码部署的无特权用户" class="headerlink" title="为了安全起见，新建一个专门用于代码部署的无特权用户"></a>为了安全起见，新建一个专门用于代码部署的无特权用户</h4><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">useradd -m apps</span><br><span class="line">passwd apps //设置该用户的密码，也可根据喜好配置成免密码登陆</span><br></pre></td></tr></table></figure></code></pre><h4 id="新建一个目录作为要部署代码的根目录。"><a href="#新建一个目录作为要部署代码的根目录。" class="headerlink" title="新建一个目录作为要部署代码的根目录。"></a>新建一个目录作为要部署代码的根目录。</h4>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /apps/web/www/git</span><br><span class="line">mkdir -p /apps/web/www/html</span><br></pre></td></tr></table></figure><p>  这里建立git目录和html目录，是为了将代码和.git分离出来。<br>  在nginx的root中，直接设置<code>/apps/web/www/html</code>就不用担心.git之类的问题了。</p><h4 id="将这个目录的属主和属组都改为上面新建的用户apps"><a href="#将这个目录的属主和属组都改为上面新建的用户apps" class="headerlink" title="将这个目录的属主和属组都改为上面新建的用户apps"></a>将这个目录的属主和属组都改为上面新建的用户apps</h4><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /apps/web/www</span><br><span class="line">chown apps:apps git</span><br></pre></td></tr></table></figure></code></pre><h4 id="切换到部署代码的专用用户su-apps"><a href="#切换到部署代码的专用用户su-apps" class="headerlink" title="切换到部署代码的专用用户su apps"></a>切换到部署代码的专用用户<code>su apps</code></h4><h4 id="进入项目根目录，初始化为git仓库"><a href="#进入项目根目录，初始化为git仓库" class="headerlink" title="进入项目根目录，初始化为git仓库"></a>进入项目根目录，初始化为git仓库</h4><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /apps/web/www/git</span><br><span class="line">git init</span><br></pre></td></tr></table></figure></code></pre><p>  注意：这里千万不要用<code>git --bare init</code>，一旦使用后续的<code>git checkout -f</code>是检不出来代码的。</p><h4 id="【重要】让仓库接受代码提交"><a href="#【重要】让仓库接受代码提交" class="headerlink" title="【重要】让仓库接受代码提交"></a>【重要】让仓库接受代码提交</h4><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config receive.denyCurrentBranch ignore</span><br><span class="line">git config core.worktree /apps/web/www/html</span><br><span class="line">git config --bool receive.denyNonFastForwards false  //禁止强制推送</span><br></pre></td></tr></table></figure></code></pre><p>至此，一个空的git仓库就在服务器上建好了，仓库的地址为：<br><code>ssh://apps@ip/apps/web/www/git/.git</code></p><h3 id="local-准备工作："><a href="#local-准备工作：" class="headerlink" title="local 准备工作："></a>local 准备工作：</h3><h4 id="通过git-clone或git-pull从github或gitlab仓库上将代码拉取到本地"><a href="#通过git-clone或git-pull从github或gitlab仓库上将代码拉取到本地" class="headerlink" title="通过git clone或git pull从github或gitlab仓库上将代码拉取到本地"></a>通过<code>git clone</code>或<code>git pull</code>从github或gitlab仓库上将代码拉取到本地</h4><h4 id="将服务器添加到远程仓库列表，使用名字来区分不同的服务器，如服务器可以叫做server"><a href="#将服务器添加到远程仓库列表，使用名字来区分不同的服务器，如服务器可以叫做server" class="headerlink" title="将服务器添加到远程仓库列表，使用名字来区分不同的服务器，如服务器可以叫做server"></a>将服务器添加到远程仓库列表，使用名字来区分不同的服务器，如服务器可以叫做server</h4><p>   <code>git remote add server ssh://apps@ip/apps/web/www/git/.git</code></p><h4 id="将本地代码提交到测试服务器上面"><a href="#将本地代码提交到测试服务器上面" class="headerlink" title="将本地代码提交到测试服务器上面"></a>将本地代码提交到测试服务器上面</h4><p>   <code>git push server master</code></p><h3 id="server-操作："><a href="#server-操作：" class="headerlink" title="server 操作："></a>server 操作：</h3><h4 id="更新server，git仓库状态并检出文件"><a href="#更新server，git仓库状态并检出文件" class="headerlink" title="更新server，git仓库状态并检出文件"></a>更新server，git仓库状态并检出文件</h4>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /apps/web/html/git</span><br><span class="line">git update-server-info</span><br><span class="line">git checkout -f</span><br></pre></td></tr></table></figure><h4 id="检查是不是将文件更新进来了git-status"><a href="#检查是不是将文件更新进来了git-status" class="headerlink" title="检查是不是将文件更新进来了git status"></a>检查是不是将文件更新进来了<code>git status</code></h4><h4 id="设置服务器端更新hook：post-update"><a href="#设置服务器端更新hook：post-update" class="headerlink" title="设置服务器端更新hook：post-update"></a>设置服务器端更新hook：post-update</h4><p>   <code>cd .git/hooks</code><br>   新建 post-receive 或将 post-receive.sample 重命名为post-receive<code>touch post-receive</code>或则<br>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv post-receive.sample post-receive</span><br><span class="line">vim post-receive</span><br></pre></td></tr></table></figure></p><p>   将如下内容复制到文件中：<br>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line">unset GIT_DIR</span><br><span class="line">cd ..</span><br><span class="line">git checkout -f</span><br></pre></td></tr></table></figure></p><p>注: 第3步的操作将post-receive 替换为 post-update也可以，<br>不过需要先将post-update中的<code>exec git update-server-info</code>这一行删掉</p><h3 id="后续代码的更新："><a href="#后续代码的更新：" class="headerlink" title="后续代码的更新："></a>后续代码的更新：</h3><h4 id="github-有更新的时候pull更新local"><a href="#github-有更新的时候pull更新local" class="headerlink" title="github 有更新的时候pull更新local"></a>github 有更新的时候pull更新local</h4><h4 id="然后本地先push到test-server进行测试"><a href="#然后本地先push到test-server进行测试" class="headerlink" title="然后本地先push到test-server进行测试"></a>然后本地先push到test-server进行测试</h4><h4 id="然后在本地测试，测试通过之后pust到prd上线"><a href="#然后在本地测试，测试通过之后pust到prd上线" class="headerlink" title="然后在本地测试，测试通过之后pust到prd上线"></a>然后在本地测试，测试通过之后pust到prd上线</h4><h4 id="代码的回滚："><a href="#代码的回滚：" class="headerlink" title="代码的回滚："></a>代码的回滚：</h4><ul><li><p>服务器端回滚：推荐<code>git reset --hard HEAD^</code></p></li><li><p>本地仓库回滚：无需登陆服务器即可实现代码回滚，<code>git reset HEAD^</code>保留代码回滚，</p><p>使用<code>git push remote_name local_branch_name -f</code> 强制推送</p></li></ul><h3 id="使用过程中需要注意的问题："><a href="#使用过程中需要注意的问题：" class="headerlink" title="使用过程中需要注意的问题："></a>使用过程中需要注意的问题：</h3><ul><li>需要约定好git不能更新的操作要怎么处理，比如新增数据库的字段，新安装必要的扩展等</li><li>充分利用好git的hook功能，比如pre-commit可用于提交代码前进行单元测试等，但是hook做的操作要尽量简单</li></ul><h3 id="git其他操作"><a href="#git其他操作" class="headerlink" title="git其他操作"></a>git其他操作</h3><p>存储当前的版本号，如：<code>git log –pretty -1 | awk ‘/^commit/{print $2}’</code></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;server-准备工作：&quot;&gt;&lt;a href=&quot;#server-准备工作：&quot; class=&quot;headerlink&quot; title=&quot;server 准备工作：&quot;&gt;&lt;/a&gt;server 准备工作：&lt;/h3&gt;&lt;h4 id=&quot;这些工作都在root或有管理权限的帐号下进行，下面
+      
+    
+    </summary>
+    
+    
+      <category term="git-deploy" scheme="http://wiki.deno.vip/tags/git-deploy/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>git单操作集锦</title>
+    <link href="http://wiki.deno.vip/2017/09/22/git-tips/"/>
+    <id>http://wiki.deno.vip/2017/09/22/git-tips/</id>
+    <published>2017-09-22T01:10:00.000Z</published>
+    <updated>2019-06-24T07:17:07.972Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="git-合并单个文件"><a href="#git-合并单个文件" class="headerlink" title="git 合并单个文件"></a>git 合并单个文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -p master account/api/views.py</span><br></pre></td></tr></table></figure><h3 id="git-本地忽略跟踪"><a href="#git-本地忽略跟踪" class="headerlink" title="git 本地忽略跟踪"></a>git 本地忽略跟踪</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git update-index --assume-unchanged /path/to/file</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;git-合并单个文件&quot;&gt;&lt;a href=&quot;#git-合并单个文件&quot; class=&quot;headerlink&quot; title=&quot;git 合并单个文件&quot;&gt;&lt;/a&gt;git 合并单个文件&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;t
+      
+    
+    </summary>
+    
+    
+      <category term="linux-tips" scheme="http://wiki.deno.vip/tags/linux-tips/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>人际交往能力：远比你想象的重要</title>
+    <link href="http://wiki.deno.vip/2017/09/21/communication/"/>
+    <id>http://wiki.deno.vip/2017/09/21/communication/</id>
+    <published>2017-09-21T01:09:00.000Z</published>
+    <updated>2019-06-24T07:17:07.968Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="需要特别留意的点："><a href="#需要特别留意的点：" class="headerlink" title="需要特别留意的点："></a>需要特别留意的点：</h3><ul><li>每个人都希望感到自己很重要<ul><li>轻率地否决同事的想法，往往会起反效果。</li></ul></li></ul><ul><li>换位思考<ol><li>一个产品的自我修养，思考对他人而言什么才是最重要，什么才是他们需要的。</li><li>解决需求或提升效率的表述，一定比所谓的建议或经验更有说服力。</li></ol></li></ul><ul><li>减少争执<ul><li>注意区分争执和辩论。争执中，任何逻辑都不足以说服人。退一步，有时候可能会赢得不可估量的尊重。</li></ul></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;需要特别留意的点：&quot;&gt;&lt;a href=&quot;#需要特别留意的点：&quot; class=&quot;headerlink&quot; title=&quot;需要特别留意的点：&quot;&gt;&lt;/a&gt;需要特别留意的点：&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;每个人都希望感到自己很重要&lt;ul&gt;
+&lt;li&gt;轻率地否决同事的想法，往往会
+      
+    
+    </summary>
+    
+    
+      <category term="Interpersonal communication" scheme="http://wiki.deno.vip/tags/Interpersonal-communication/"/>
+    
+  </entry>
+  
+</feed>
