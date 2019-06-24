@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[GitLab Community Edition]]></title>
     <url>%2F2019%2F05%2F12%2Fgitlab-community%2F</url>
-    <content type="text"><![CDATA[注：gitlab 备份、恢复、迁移 gitlab docker-compose.yml1234567891011121314151617version: &apos;3.6&apos;services: gitlab: container_name: gitlab image: gitlab/gitlab-ce:latest restart: always environment: GITLAB_OMNIBUS_CONFIG: | external_url &apos;http://gitlab.deno.vip&apos; ports: - &quot;80:80&quot; - &quot;443:443&quot; - &quot;22:22&quot; volumes: - &quot;/apps/gitlab/config:/etc/gitlab&quot; - &quot;/apps/gitlab/logs:/var/log/gitlab&quot; - &quot;/apps/gitlab/data:/var/opt/gitlab&quot; /apps 最好是数据盘挂载路径 gitlab与宿主机ssh端口最好设置为非22，当然迁移除外。]]></content>
+    <content type="text"><![CDATA[注：gitlab 备份、恢复、迁移 docker-compose.yml1234567891011121314151617version: &apos;3.6&apos;services: gitlab: container_name: gitlab image: gitlab/gitlab-ce:latest restart: always environment: GITLAB_OMNIBUS_CONFIG: | external_url &apos;http://gitlab.deno.vip&apos; ports: - &quot;80:80&quot; - &quot;443:443&quot; - &quot;22:22&quot; volumes: - &quot;/data/gitlab/config:/etc/gitlab&quot; - &quot;/data/gitlab/logs:/var/log/gitlab&quot; - &quot;/data/gitlab/data:/var/opt/gitlab&quot; /data 最好是数据盘挂载路径 gitlab与宿主机ssh端口最好设置为非22，当然迁移除外。]]></content>
       <tags>
         <tag>centos-gitlab</tag>
       </tags>

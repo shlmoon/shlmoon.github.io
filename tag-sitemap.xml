@@ -3,6 +3,13 @@
 
 
     <url>
+        <loc>http://wiki.deno.vip/tags/centos-gitlab/</loc>
+        <lastmod>2019-06-24T07:59:29.776Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://wiki.deno.vip/tags/centos-docker/</loc>
         <lastmod>2019-06-24T07:17:07.975Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -33,13 +40,6 @@
     <url>
         <loc>http://wiki.deno.vip/tags/https/</loc>
         <lastmod>2019-06-24T07:17:07.969Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://wiki.deno.vip/tags/centos-gitlab/</loc>
-        <lastmod>2019-06-24T07:17:07.968Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

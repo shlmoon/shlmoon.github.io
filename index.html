@@ -359,7 +359,7 @@
         
           
           注：gitlab 备份、恢复、迁移
-gitlab docker-compose.yml1234567891011121314151617version: &apos;3.6&apos;services:  gitlab:    container_name: gitlab    image: gitlab/gitlab-ce:latest    restart: always    environ
+docker-compose.yml1234567891011121314151617version: &apos;3.6&apos;services:  gitlab:    container_name: gitlab    image: gitlab/gitlab-ce:latest    restart: always    environment:  
           ...
           <!--noindex-->
           <div class="post-button text-center">
