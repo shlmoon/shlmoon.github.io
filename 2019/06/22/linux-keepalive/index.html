@@ -85,18 +85,18 @@
 
 
 
-<meta name="description" content="Environment Azure centos7.6 python3.6.5 tornado==5.0.2 Tornado-MySQL==0.5.1 tornado-redis==2.4.18  事故场景最终的结果是浏览器所有的请求都是pending的状态。通过lsof -i:9000查看:  12345python3 105792 apps    5u  IPv4 2782706      0">
+<meta name="description" content="前置环境 Azure centos7.6 python3.6.5 tornado==5.0.2 Tornado-MySQL==0.5.1 tornado-redis==2.4.18  事故场景最终的结果是浏览器所有的请求都是pending的状态。通过lsof -i:9000查看:  12345python3 105792 apps    5u  IPv4 2782706      0t0  TCP">
 <meta name="keywords" content="linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux close_wait">
 <meta property="og:url" content="http://wiki.deno.vip/2019/06/22/linux-keepalive/index.html">
 <meta property="og:site_name" content="逆光之数">
-<meta property="og:description" content="Environment Azure centos7.6 python3.6.5 tornado==5.0.2 Tornado-MySQL==0.5.1 tornado-redis==2.4.18  事故场景最终的结果是浏览器所有的请求都是pending的状态。通过lsof -i:9000查看:  12345python3 105792 apps    5u  IPv4 2782706      0">
+<meta property="og:description" content="前置环境 Azure centos7.6 python3.6.5 tornado==5.0.2 Tornado-MySQL==0.5.1 tornado-redis==2.4.18  事故场景最终的结果是浏览器所有的请求都是pending的状态。通过lsof -i:9000查看:  12345python3 105792 apps    5u  IPv4 2782706      0t0  TCP">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-12T08:21:05.190Z">
+<meta property="og:updated_time" content="2019-07-12T08:22:11.117Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux close_wait">
-<meta name="twitter:description" content="Environment Azure centos7.6 python3.6.5 tornado==5.0.2 Tornado-MySQL==0.5.1 tornado-redis==2.4.18  事故场景最终的结果是浏览器所有的请求都是pending的状态。通过lsof -i:9000查看:  12345python3 105792 apps    5u  IPv4 2782706      0">
+<meta name="twitter:description" content="前置环境 Azure centos7.6 python3.6.5 tornado==5.0.2 Tornado-MySQL==0.5.1 tornado-redis==2.4.18  事故场景最终的结果是浏览器所有的请求都是pending的状态。通过lsof -i:9000查看:  12345python3 105792 apps    5u  IPv4 2782706      0t0  TCP">
 
 
 
@@ -358,7 +358,7 @@
       
 
       
-        <h3 id="Environment"><a href="#Environment" class="headerlink" title="Environment"></a>Environment</h3><ul>
+        <h3 id="前置环境"><a href="#前置环境" class="headerlink" title="前置环境"></a>前置环境</h3><ul>
 <li>Azure</li>
 <li>centos7.6</li>
 <li>python3.6.5</li>
@@ -388,7 +388,7 @@
 <p>The <code>tcp_keepalive_time</code> and <code>tcp_keepalive_intvl</code> values are expressed in seconds. To retain these values after a system restart, they must be added to the <code>/etc/sysctl.conf</code> file.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">net.ipv4.tcp_keepalive_time = 60</span><br><span class="line">net.ipv4.tcp_keepalive_intvl = 1</span><br><span class="line">net.ipv4.tcp_keepalive_probes = 10</span><br><span class="line">net.ipv4.tcp_retries2 = 3</span><br></pre></td></tr></table></figure>
 
-<h3 id="conclude"><a href="#conclude" class="headerlink" title="conclude"></a>conclude</h3><p>worker出现CLOSE_WAIT，问题一定在代码部分。tornado mysql缺少快速失败机制，始终是一个坑。更改架构代码，影响不小。更改系统参数，是一个缓冲方案。</p>
+<h3 id="注"><a href="#注" class="headerlink" title="注"></a>注</h3><p>worker出现CLOSE_WAIT，问题一定在代码部分。tornado mysql缺少快速失败机制，始终是一个坑。更改架构代码，影响不小。更改系统参数，是一个缓冲方案。</p>
 
       
     </div>
@@ -588,7 +588,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Environment"><span class="nav-number">1.</span> <span class="nav-text">Environment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事故场景"><span class="nav-number">2.</span> <span class="nav-text">事故场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事故解决"><span class="nav-number">3.</span> <span class="nav-text">事故解决</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#conclude"><span class="nav-number">4.</span> <span class="nav-text">conclude</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前置环境"><span class="nav-number">1.</span> <span class="nav-text">前置环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事故场景"><span class="nav-number">2.</span> <span class="nav-text">事故场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事故解决"><span class="nav-number">3.</span> <span class="nav-text">事故解决</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注"><span class="nav-number">4.</span> <span class="nav-text">注</span></a></li></ol></div>
             
 
           </div>
