@@ -3,6 +3,13 @@
 
 
     <url>
+        <loc>http://wiki.deno.vip/tags/linux/</loc>
+        <lastmod>2019-07-12T08:09:12.094Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://wiki.deno.vip/tags/centos-gitlab/</loc>
         <lastmod>2019-06-24T07:59:29.776Z</lastmod>
         <changefreq>weekly</changefreq>

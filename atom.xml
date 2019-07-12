@@ -88,6 +88,31 @@
   </entry>
   
   <entry>
+    <title>linux CLOSE_WAIT</title>
+    <link href="http://wiki.deno.vip/2018/06/22/linux-keepalive/"/>
+    <id>http://wiki.deno.vip/2018/06/22/linux-keepalive/</id>
+    <published>2018-06-22T01:10:00.000Z</published>
+    <updated>2019-07-12T08:09:12.094Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Environment"><a href="#Environment" class="headerlink" title="Environment"></a>Environment</h3><ul><li>Azure</li><li>centos7.6</li><li>python3.6.5</li><li>tornado==5.0.2</li><li>Tornado-MySQL==0.5.1</li><li>tornado-redis==2.4.18</li></ul><h3 id="事故场景"><a href="#事故场景" class="headerlink" title="事故场景"></a>事故场景</h3><p>最终的结果是浏览器所有的请求都是pending的状态。<br>通过<code>lsof -i:9000</code>查看: </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">python3 105792 apps    5u  IPv4 2782706      0t0  TCP *:cslistener (LISTEN)</span><br><span class="line">python3 105808 apps    5u  IPv4 2782706      0t0  TCP *:cslistener (LISTEN)</span><br><span class="line">python3 105808 apps    9u  IPv4 2791131      0t0  TCP localhost:cslistener-&gt;localhost:57550 (CLOSE_WAIT)</span><br><span class="line">python3 105809 apps    5u  IPv4 2782706      0t0  TCP *:cslistener (LISTEN)</span><br><span class="line">python3 105809 apps    9u  IPv4 2791129      0t0  TCP localhost:cslistener-&gt;localhost:57548 (CLOSE_WAIT)</span><br></pre></td></tr></table></figure><p>2个worker进程已经是CLOSE_WAIT的状态了。</p><h3 id="事故解决"><a href="#事故解决" class="headerlink" title="事故解决"></a>事故解决</h3><p>I. Updating Linux</p><p>For a Linux client, there are four operating system keepalive parameters to change:</p><ul><li><p><code>tcp_keepalive_probes</code> - the number of probes that are sent and unacknowledged before the client considers the connection broken and notifies the application layer</p></li><li><p><code>tcp_keepalive_time</code> - the interval between the last data packet sent and the first keepalive probe</p></li><li><p><code>tcp_keepalive_intvl</code> - the interval between subsequent keepalive probes</p></li><li><p><code>tcp_retries2</code> - the maximum number of times a packet is retransmitted before giving up</p></li></ul><p>II. On the Linux operating system, update these parameters using the “echo” command:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;60&quot; &gt; /proc/sys/net/ipv4/tcp_keepalive_time</span><br><span class="line">echo &quot;1&quot; &gt; /proc/sys/net/ipv4/tcp_keepalive_intvl</span><br><span class="line">echo &quot;10&quot; &gt; /proc/sys/net/ipv4/tcp_keepalive_probes</span><br><span class="line">echo &quot;3&quot; &gt; /proc/sys/net/ipv4/tcp_retries2</span><br></pre></td></tr></table></figure><p>The <code>tcp_keepalive_time</code> and <code>tcp_keepalive_intvl</code> values are expressed in seconds. To retain these values after a system restart, they must be added to the <code>/etc/sysctl.conf</code> file.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">net.ipv4.tcp_keepalive_time = 60</span><br><span class="line">net.ipv4.tcp_keepalive_intvl = 1</span><br><span class="line">net.ipv4.tcp_keepalive_probes = 10</span><br><span class="line">net.ipv4.tcp_retries2 = 3</span><br></pre></td></tr></table></figure><h3 id="conclude"><a href="#conclude" class="headerlink" title="conclude"></a>conclude</h3><p>worker出现CLOSE_WAIT，问题一定在代码部分。tornado mysql缺少快速失败机制，始终是一个坑。更改架构代码，影响不小。更改系统参数，是一个缓冲方案。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;Environment&quot;&gt;&lt;a href=&quot;#Environment&quot; class=&quot;headerlink&quot; title=&quot;Environment&quot;&gt;&lt;/a&gt;Environment&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Azure&lt;/li&gt;
+&lt;li&gt;centos7.6&lt;/li
+      
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="http://wiki.deno.vip/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
     <title>centos 安装mysql</title>
     <link href="http://wiki.deno.vip/2018/03/22/centos-mysql/"/>
     <id>http://wiki.deno.vip/2018/03/22/centos-mysql/</id>
