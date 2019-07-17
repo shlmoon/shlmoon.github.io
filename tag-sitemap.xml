@@ -3,15 +3,15 @@
 
 
     <url>
-        <loc>http://wiki.deno.vip/tags/git-deploy/</loc>
-        <lastmod>2019-07-17T07:32:57.098Z</lastmod>
+        <loc>http://wiki.deno.vip/tags/linux/</loc>
+        <lastmod>2019-07-17T07:39:58.094Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://wiki.deno.vip/tags/linux/</loc>
-        <lastmod>2019-07-12T08:22:11.117Z</lastmod>
+        <loc>http://wiki.deno.vip/tags/git-deploy/</loc>
+        <lastmod>2019-07-17T07:32:57.098Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
