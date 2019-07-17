@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>http://wiki.deno.vip/2017/09/23/git-deploy/</loc>
+        <lastmod>2019-07-17T07:32:57.098Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://wiki.deno.vip/2019/06/22/linux-keepalive/</loc>
         <lastmod>2019-07-12T08:22:11.117Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -34,14 +42,6 @@
     <url>
         <loc>http://wiki.deno.vip/2017/09/24/linux-tips/</loc>
         <lastmod>2019-06-24T07:17:07.974Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://wiki.deno.vip/2017/09/23/git-deploy/</loc>
-        <lastmod>2019-06-24T07:17:07.973Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
