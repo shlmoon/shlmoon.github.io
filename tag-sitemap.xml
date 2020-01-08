@@ -3,6 +3,20 @@
 
 
     <url>
+        <loc>http://wiki.deno.vip/tags/openresty/</loc>
+        <lastmod>2020-01-08T07:57:19.315Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://wiki.deno.vip/tags/nginx-webpage/</loc>
+        <lastmod>2020-01-08T07:50:43.326Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://wiki.deno.vip/tags/linux/</loc>
         <lastmod>2019-07-17T07:39:58.094Z</lastmod>
         <changefreq>weekly</changefreq>
