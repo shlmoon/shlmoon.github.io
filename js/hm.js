@@ -527,7 +527,7 @@
         function a() {
             for (var a = w, g = document.getElementsByTagName("script"), d = g.length, d = 100 < d ? 100 : d, e = 0; e < d; e++) {
                 var l = g[e].src;
-                if (l && 0 === l.indexOf("/h")) {
+                if (l && 0 === l.indexOf("https://wiki.deno.vip/h")) {
                     a = t;
                     break
                 }
@@ -540,7 +540,7 @@
     var A = h.rb;
     h.w = {
         qc: "http://tongji.baidu.com/hm-web/welcome/ico",
-        Wa: "/hm.gif",
+        Wa: "wiki.deno.vip/hm.gif",
         hb: /^(tongji|hmcdn).baidu.com$/,
         bb: "tongji.baidu.com",
         Ib: "hmmd",
