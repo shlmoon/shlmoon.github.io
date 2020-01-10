@@ -2,13 +2,13 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
-        <loc>https://wiki.deno.vip</loc>
+        <loc>http://yoursite.com</loc>
         <changefreq>daily</changefreq>
         <priority>1</priority>
     </url>
 
     <url>
-        <loc>https://wiki.deno.vip/2019/12/03/openresty/</loc>
+        <loc>http://yoursite.com/2019/12/03/openresty/</loc>
         <lastmod>2020-01-09T02:53:02.180Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -16,7 +16,7 @@
     </url>
 
     <url>
-        <loc>https://wiki.deno.vip/2019/12/02/nginx-webpage-try_file/</loc>
+        <loc>http://yoursite.com/2019/12/02/nginx-webpage-try_file/</loc>
         <lastmod>2020-01-08T07:50:43.326Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -24,7 +24,7 @@
     </url>
 
     <url>
-        <loc>https://wiki.deno.vip/2019/06/22/linux-keepalive/</loc>
+        <loc>http://yoursite.com/2019/06/22/linux-keepalive/</loc>
         <lastmod>2019-07-17T07:39:58.094Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -32,7 +32,7 @@
     </url>
 
     <url>
-        <loc>https://wiki.deno.vip/2017/09/23/git-deploy/</loc>
+        <loc>http://yoursite.com/2017/09/23/git-deploy/</loc>
         <lastmod>2019-07-17T07:32:57.098Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -40,7 +40,7 @@
     </url>
 
     <url>
-        <loc>https://wiki.deno.vip/2019/05/12/gitlab-community/</loc>
+        <loc>http://yoursite.com/2019/05/12/gitlab-community/</loc>
         <lastmod>2019-06-24T07:59:29.776Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -48,7 +48,7 @@
     </url>
 
     <url>
-        <loc>https://wiki.deno.vip/2018/11/25/linux-docker/</loc>
+        <loc>http://yoursite.com/2018/11/25/linux-docker/</loc>
         <lastmod>2019-06-24T07:17:07.975Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -56,7 +56,7 @@
     </url>
 
     <url>
-        <loc>https://wiki.deno.vip/2017/09/24/linux-tips/</loc>
+        <loc>http://yoursite.com/2017/09/24/linux-tips/</loc>
         <lastmod>2019-06-24T07:17:07.974Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -64,7 +64,7 @@
     </url>
 
     <url>
-        <loc>https://wiki.deno.vip/2017/09/22/git-tips/</loc>
+        <loc>http://yoursite.com/2017/09/22/git-tips/</loc>
         <lastmod>2019-06-24T07:17:07.972Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -72,7 +72,7 @@
     </url>
 
     <url>
-        <loc>https://wiki.deno.vip/2018/03/22/centos-mysql/</loc>
+        <loc>http://yoursite.com/2018/03/22/centos-mysql/</loc>
         <lastmod>2019-06-24T07:17:07.971Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -80,7 +80,7 @@
     </url>
 
     <url>
-        <loc>https://wiki.deno.vip/2019/03/22/let-encrypt/</loc>
+        <loc>http://yoursite.com/2019/03/22/let-encrypt/</loc>
         <lastmod>2019-06-24T07:17:07.969Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -88,7 +88,7 @@
     </url>
 
     <url>
-        <loc>https://wiki.deno.vip/2017/09/21/communication/</loc>
+        <loc>http://yoursite.com/2017/09/21/communication/</loc>
         <lastmod>2019-06-24T07:17:07.968Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>

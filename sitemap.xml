@@ -3,17 +3,17 @@
 
 
     <sitemap>
-        <loc>https://wiki.deno.vip/post-sitemap.xml</loc>
+        <loc>http://yoursite.com/post-sitemap.xml</loc>
         <lastmod>2020-01-09T02:53:02.180Z</lastmod>
     </sitemap>
 
     <sitemap>
-        <loc>https://wiki.deno.vip/page-sitemap.xml</loc>
+        <loc>http://yoursite.com/page-sitemap.xml</loc>
         <lastmod>2020-01-08T09:47:04.245Z</lastmod>
     </sitemap>
 
     <sitemap>
-        <loc>https://wiki.deno.vip/tag-sitemap.xml</loc>
+        <loc>http://yoursite.com/tag-sitemap.xml</loc>
         <lastmod>2020-01-09T02:53:02.180Z</lastmod>
     </sitemap>
 
