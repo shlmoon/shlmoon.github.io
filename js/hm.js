@@ -527,7 +527,7 @@
         function a() {
             for (var a = w, g = document.getElementsByTagName("script"), d = g.length, d = 100 < d ? 100 : d, e = 0; e < d; e++) {
                 var l = g[e].src;
-                if (l && 0 === l.indexOf("https://wiki.deno.vip/h")) {
+                if (l && 0 === l.indexOf("https://hm.baidu.com/h")) {
                     a = t;
                     break
                 }
