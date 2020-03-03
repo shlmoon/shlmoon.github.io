@@ -85,18 +85,18 @@
 
 
 
-<meta name="description" content="shell script1234567891011#!/bin/bashlogroot=&amp;quot;/usr/servers/nginx/logs&amp;quot;hisroot=$logroot/log-historysudo mkdir -p $hisrootday=$(date &amp;apos;+%Y%m%d&amp;apos;)aclogname=&amp;quot;$&amp;#123;day&amp;#125;-access.">
+<meta name="description" content="shell script1234567891011#!/bin/bashlog_dir=&amp;quot;/usr/servers/nginx/logs&amp;quot;tar_dir=$log_dir/log-historysudo mkdir -p $tar_dird=$(date &amp;apos;+%Y%m%d&amp;apos;)access_log=&amp;quot;$&amp;#123;d&amp;#125;-access.log">
 <meta name="keywords" content="linux-tips">
 <meta property="og:type" content="article">
 <meta property="og:title" content="nginx log tar">
 <meta property="og:url" content="https://wiki.deno.vip/2020/02/22/nginx-log-tar/index.html">
 <meta property="og:site_name" content="逆光之数">
-<meta property="og:description" content="shell script1234567891011#!/bin/bashlogroot=&amp;quot;/usr/servers/nginx/logs&amp;quot;hisroot=$logroot/log-historysudo mkdir -p $hisrootday=$(date &amp;apos;+%Y%m%d&amp;apos;)aclogname=&amp;quot;$&amp;#123;day&amp;#125;-access.">
+<meta property="og:description" content="shell script1234567891011#!/bin/bashlog_dir=&amp;quot;/usr/servers/nginx/logs&amp;quot;tar_dir=$log_dir/log-historysudo mkdir -p $tar_dird=$(date &amp;apos;+%Y%m%d&amp;apos;)access_log=&amp;quot;$&amp;#123;d&amp;#125;-access.log">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-03T07:43:02.986Z">
+<meta property="og:updated_time" content="2020-03-03T07:54:55.857Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nginx log tar">
-<meta name="twitter:description" content="shell script1234567891011#!/bin/bashlogroot=&amp;quot;/usr/servers/nginx/logs&amp;quot;hisroot=$logroot/log-historysudo mkdir -p $hisrootday=$(date &amp;apos;+%Y%m%d&amp;apos;)aclogname=&amp;quot;$&amp;#123;day&amp;#125;-access.">
+<meta name="twitter:description" content="shell script1234567891011#!/bin/bashlog_dir=&amp;quot;/usr/servers/nginx/logs&amp;quot;tar_dir=$log_dir/log-historysudo mkdir -p $tar_dird=$(date &amp;apos;+%Y%m%d&amp;apos;)access_log=&amp;quot;$&amp;#123;d&amp;#125;-access.log">
 
 
 
@@ -358,7 +358,7 @@
       
 
       
-        <h3 id="shell-script"><a href="#shell-script" class="headerlink" title="shell script"></a>shell script</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">logroot=&quot;/usr/servers/nginx/logs&quot;</span><br><span class="line">hisroot=$logroot/log-history</span><br><span class="line">sudo mkdir -p $hisroot</span><br><span class="line">day=$(date &apos;+%Y%m%d&apos;)</span><br><span class="line">aclogname=&quot;$&#123;day&#125;-access.log&quot;</span><br><span class="line">erlogname=&quot;$&#123;day&#125;-error.log&quot;</span><br><span class="line">cat $logroot/api-access.log &gt; $hisroot/$aclogname</span><br><span class="line">cat $logroot/api-error.log &gt; $hisroot/$erlogname</span><br><span class="line">sudo true &gt; $logroot/access.log</span><br><span class="line">sudo true &gt; $logroot/error.log</span><br></pre></td></tr></table></figure>
+        <h3 id="shell-script"><a href="#shell-script" class="headerlink" title="shell script"></a>shell script</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">log_dir=&quot;/usr/servers/nginx/logs&quot;</span><br><span class="line">tar_dir=$log_dir/log-history</span><br><span class="line">sudo mkdir -p $tar_dir</span><br><span class="line">d=$(date &apos;+%Y%m%d&apos;)</span><br><span class="line">access_log=&quot;$&#123;d&#125;-access.log&quot;</span><br><span class="line">error_log=&quot;$&#123;d&#125;-error.log&quot;</span><br><span class="line">cat $log_dir/access.log &gt; $tar_dir/$access_log</span><br><span class="line">cat $log_dir/error.log &gt; $tar_dir/$access_log</span><br><span class="line">sudo true &gt; $log_dir/access.log</span><br><span class="line">sudo true &gt; $log_dir/error.log</span><br></pre></td></tr></table></figure>
 
 <h3 id="crontab-命令"><a href="#crontab-命令" class="headerlink" title="crontab 命令"></a>crontab 命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">59 23 * * * /usr/servers/nginx/logs/log-tar.sh</span><br></pre></td></tr></table></figure>
 

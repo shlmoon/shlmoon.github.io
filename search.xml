@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[nginx log tar]]></title>
     <url>%2F2020%2F02%2F22%2Fnginx-log-tar%2F</url>
-    <content type="text"><![CDATA[shell script1234567891011#!/bin/bashlogroot=&quot;/usr/servers/nginx/logs&quot;hisroot=$logroot/log-historysudo mkdir -p $hisrootday=$(date &apos;+%Y%m%d&apos;)aclogname=&quot;$&#123;day&#125;-access.log&quot;erlogname=&quot;$&#123;day&#125;-error.log&quot;cat $logroot/api-access.log &gt; $hisroot/$aclognamecat $logroot/api-error.log &gt; $hisroot/$erlognamesudo true &gt; $logroot/access.logsudo true &gt; $logroot/error.log crontab 命令159 23 * * * /usr/servers/nginx/logs/log-tar.sh]]></content>
+    <content type="text"><![CDATA[shell script1234567891011#!/bin/bashlog_dir=&quot;/usr/servers/nginx/logs&quot;tar_dir=$log_dir/log-historysudo mkdir -p $tar_dird=$(date &apos;+%Y%m%d&apos;)access_log=&quot;$&#123;d&#125;-access.log&quot;error_log=&quot;$&#123;d&#125;-error.log&quot;cat $log_dir/access.log &gt; $tar_dir/$access_logcat $log_dir/error.log &gt; $tar_dir/$access_logsudo true &gt; $log_dir/access.logsudo true &gt; $log_dir/error.log crontab 命令159 23 * * * /usr/servers/nginx/logs/log-tar.sh]]></content>
       <tags>
         <tag>linux-tips</tag>
       </tags>
