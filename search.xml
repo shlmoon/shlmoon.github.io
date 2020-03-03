@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[nginx log tar]]></title>
+    <url>%2F2020%2F02%2F22%2Fnginx-log-tar%2F</url>
+    <content type="text"><![CDATA[shell script1234567891011#!/bin/bashlogroot=&quot;/usr/servers/nginx/logs&quot;hisroot=$logroot/log-historysudo mkdir -p $hisrootday=$(date &apos;+%Y%m%d&apos;)aclogname=&quot;$&#123;day&#125;-access.log&quot;erlogname=&quot;$&#123;day&#125;-error.log&quot;cat $logroot/api-access.log &gt; $hisroot/$aclognamecat $logroot/api-error.log &gt; $hisroot/$erlognamesudo true &gt; $logroot/access.logsudo true &gt; $logroot/error.log crontab 命令159 23 * * * /usr/servers/nginx/logs/log-tar.sh]]></content>
+      <tags>
+        <tag>linux-tips</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[nginx openresty]]></title>
     <url>%2F2019%2F12%2F03%2Fopenresty%2F</url>
     <content type="text"><![CDATA[openresty installhttps://blog.csdn.net/fyq201749/article/details/80981350 openresty sampleredirect.lua 123456789101112131415161718192021222324252627282930313233343536local cjson = require &quot;cjson.safe&quot;local function read_from_file(file_name) local f = assert(io.open(file_name, &quot;r&quot;)) local string = f:read(&quot;*all&quot;) f:close() return stringendngx.req.read_body()local body = ngx.req.get_body_data()ngx.log(ngx.INFO, &quot;params.\n&quot;, body, &quot;\n&quot;)if (body == nil) then local body_file = ngx.req.get_body_file() if body_file then body = read_from_file(body_file) else ngx.status = 500 ngx.say(&quot;error&quot;) return endendlocal body_parameters, err = cjson.decode(ngx.req.get_body_data())if err then body_parameters = &#123;&#125;endif (&quot;keywords&quot; == body_parameters[&quot;keywords&quot;]) then ngx.var.proxy_host=&quot;proxy_pass&quot; ngx.var.proxy_http=&apos;http&apos;else ngx.var.proxy_host=&quot;proxy_pass&quot; ngx.var.proxy_http=&apos;https&apos;end nginx config 1234567location / &#123; set $proxy_host &apos;&apos;; set $proxy_http &apos;&apos;; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; rewrite_by_lua_file /file_path/redirect.lua; proxy_pass $proxy_http://$proxy_host;&#125;]]></content>

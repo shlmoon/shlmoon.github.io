@@ -3,6 +3,13 @@
 
 
     <url>
+        <loc>https://wiki.deno.vip/tags/linux-tips/</loc>
+        <lastmod>2020-03-03T07:43:02.986Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://wiki.deno.vip/tags/openresty/</loc>
         <lastmod>2020-01-09T02:53:02.180Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -40,13 +47,6 @@
     <url>
         <loc>https://wiki.deno.vip/tags/centos-docker/</loc>
         <lastmod>2019-06-24T07:17:07.975Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://wiki.deno.vip/tags/linux-tips/</loc>
-        <lastmod>2019-06-24T07:17:07.974Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

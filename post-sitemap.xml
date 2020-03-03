@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>https://wiki.deno.vip/2020/02/22/nginx-log-tar/</loc>
+        <lastmod>2020-03-03T07:43:02.986Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://wiki.deno.vip/2019/12/03/openresty/</loc>
         <lastmod>2020-01-09T02:53:02.180Z</lastmod>
         <changefreq>weekly</changefreq>
