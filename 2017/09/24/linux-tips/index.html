@@ -85,18 +85,18 @@
 
 
 
-<meta name="description" content="root密码修改12345chattr -i /etc/passwdchattr -i /etc/shadowpasswd rootchattr +i /etc/passwdchattr +i /etc/shadow  1出现permission问题时，执行mount / -rw -o remount即可完成root密码修改。 当然这里面的操作都是在recovery(root)模式下进行的。 li">
+<meta name="description" content="root密码修改12345chattr -i /etc/passwdchattr -i /etc/shadowpasswd rootchattr +i /etc/passwdchattr +i /etc/shadow">
 <meta name="keywords" content="linux-tips">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux小操作集锦">
 <meta property="og:url" content="https://wiki.deno.vip/2017/09/24/linux-tips/index.html">
 <meta property="og:site_name" content="逆光之数">
-<meta property="og:description" content="root密码修改12345chattr -i /etc/passwdchattr -i /etc/shadowpasswd rootchattr +i /etc/passwdchattr +i /etc/shadow  1出现permission问题时，执行mount / -rw -o remount即可完成root密码修改。 当然这里面的操作都是在recovery(root)模式下进行的。 li">
+<meta property="og:description" content="root密码修改12345chattr -i /etc/passwdchattr -i /etc/shadowpasswd rootchattr +i /etc/passwdchattr +i /etc/shadow">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-24T07:17:07.974Z">
+<meta property="og:updated_time" content="2020-06-09T08:05:48.260Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux小操作集锦">
-<meta name="twitter:description" content="root密码修改12345chattr -i /etc/passwdchattr -i /etc/shadowpasswd rootchattr +i /etc/passwdchattr +i /etc/shadow  1出现permission问题时，执行mount / -rw -o remount即可完成root密码修改。 当然这里面的操作都是在recovery(root)模式下进行的。 li">
+<meta name="twitter:description" content="root密码修改12345chattr -i /etc/passwdchattr -i /etc/shadowpasswd rootchattr +i /etc/passwdchattr +i /etc/shadow">
 
 
 
@@ -360,6 +360,7 @@
       
         <h3 id="root密码修改"><a href="#root密码修改" class="headerlink" title="root密码修改"></a>root密码修改</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">chattr -i /etc/passwd</span><br><span class="line">chattr -i /etc/shadow</span><br><span class="line">passwd root</span><br><span class="line">chattr +i /etc/passwd</span><br><span class="line">chattr +i /etc/shadow</span><br></pre></td></tr></table></figure>
 
+<a id="more"></a>
 <p>1出现permission问题时，执行<code>mount / -rw -o remount</code>即可完成root密码修改。</p>
 <p>当然这里面的操作都是在recovery(root)模式下进行的。</p>
 <h3 id="linux-ssh不带密码"><a href="#linux-ssh不带密码" class="headerlink" title="linux ssh不带密码"></a>linux ssh不带密码</h3><p><code>ssh apps@ip</code>一般出现：</p>

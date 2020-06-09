@@ -85,18 +85,18 @@
 
 
 
-<meta name="description" content="前置环境 Azure centos7.6 python3.6.5 tornado==5.0.2 Tornado-MySQL==0.5.1 tornado-redis==2.4.18  事故场景最终的结果是浏览器所有的请求都是pending的状态。通过lsof -i:9000查看:  12345python3 105792 apps    5u  IPv4 2782706      0t0  TCP">
+<meta name="description" content="前置环境 Azure centos7.6 python3.6.5 tornado==5.0.2 Tornado-MySQL==0.5.1 tornado-redis==2.4.18">
 <meta name="keywords" content="linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux close_wait">
 <meta property="og:url" content="https://wiki.deno.vip/2019/06/22/linux-keepalive/index.html">
 <meta property="og:site_name" content="逆光之数">
-<meta property="og:description" content="前置环境 Azure centos7.6 python3.6.5 tornado==5.0.2 Tornado-MySQL==0.5.1 tornado-redis==2.4.18  事故场景最终的结果是浏览器所有的请求都是pending的状态。通过lsof -i:9000查看:  12345python3 105792 apps    5u  IPv4 2782706      0t0  TCP">
+<meta property="og:description" content="前置环境 Azure centos7.6 python3.6.5 tornado==5.0.2 Tornado-MySQL==0.5.1 tornado-redis==2.4.18">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-17T07:39:58.094Z">
+<meta property="og:updated_time" content="2020-06-09T08:05:41.592Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux close_wait">
-<meta name="twitter:description" content="前置环境 Azure centos7.6 python3.6.5 tornado==5.0.2 Tornado-MySQL==0.5.1 tornado-redis==2.4.18  事故场景最终的结果是浏览器所有的请求都是pending的状态。通过lsof -i:9000查看:  12345python3 105792 apps    5u  IPv4 2782706      0t0  TCP">
+<meta name="twitter:description" content="前置环境 Azure centos7.6 python3.6.5 tornado==5.0.2 Tornado-MySQL==0.5.1 tornado-redis==2.4.18">
 
 
 
@@ -366,6 +366,7 @@
 <li>Tornado-MySQL==0.5.1</li>
 <li>tornado-redis==2.4.18</li>
 </ul>
+<a id="more"></a>
 <h3 id="事故场景"><a href="#事故场景" class="headerlink" title="事故场景"></a>事故场景</h3><p>最终的结果是浏览器所有的请求都是pending的状态。<br>通过<code>lsof -i:9000</code>查看: </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">python3 105792 apps    5u  IPv4 2782706      0t0  TCP *:cslistener (LISTEN)</span><br><span class="line">python3 105808 apps    5u  IPv4 2782706      0t0  TCP *:cslistener (LISTEN)</span><br><span class="line">python3 105808 apps    9u  IPv4 2791131      0t0  TCP localhost:cslistener-&gt;localhost:57550 (CLOSE_WAIT)</span><br><span class="line">python3 105809 apps    5u  IPv4 2782706      0t0  TCP *:cslistener (LISTEN)</span><br><span class="line">python3 105809 apps    9u  IPv4 2791129      0t0  TCP localhost:cslistener-&gt;localhost:57548 (CLOSE_WAIT)</span><br></pre></td></tr></table></figure>
 

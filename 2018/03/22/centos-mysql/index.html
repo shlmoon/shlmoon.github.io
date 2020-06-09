@@ -93,7 +93,7 @@
 <meta property="og:site_name" content="逆光之数">
 <meta property="og:description" content="注：该文档只适用centos7以下（不包括centos7），安装mysql5.6。文档中的mysql5.6相对于mysql5.7存在一些意想不到的问题。比如int类型的获取到undefined会被mysql处理成default值。 检测系统是否安装mysqlyum list installed | grep mysql 安装mysql安装包12wget http://repo.mysql.com/">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-24T07:17:07.971Z">
+<meta property="og:updated_time" content="2020-06-09T08:05:15.255Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="centos 安装mysql">
 <meta name="twitter:description" content="注：该文档只适用centos7以下（不包括centos7），安装mysql5.6。文档中的mysql5.6相对于mysql5.7存在一些意想不到的问题。比如int类型的获取到undefined会被mysql处理成default值。 检测系统是否安装mysqlyum list installed | grep mysql 安装mysql安装包12wget http://repo.mysql.com/">
@@ -361,6 +361,8 @@
         <p>注：该文档只适用centos7以下（不包括centos7），安装mysql5.6。文档中的mysql5.6相对于mysql5.7存在一些意想不到的问题。比如int类型的获取到undefined会被mysql处理成default值。</p>
 <h4 id="检测系统是否安装mysql"><a href="#检测系统是否安装mysql" class="headerlink" title="检测系统是否安装mysql"></a>检测系统是否安装mysql</h4><p><code>yum list installed | grep mysql</code></p>
 <h4 id="安装mysql安装包"><a href="#安装mysql安装包" class="headerlink" title="安装mysql安装包"></a>安装mysql安装包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget http://repo.mysql.com/mysql-community-release-el6-5.noarch.rpm</span><br><span class="line">rpm -ivh mysql-community-release-el6-5.noarch.rpm</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
 
 <h4 id="查看可安装的mysql列表"><a href="#查看可安装的mysql列表" class="headerlink" title="查看可安装的mysql列表"></a>查看可安装的mysql列表</h4><p><code>yum list|grep mysql</code>选择需要安装，一般只需要安装client和server即可。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install mysql-community-server.x86_64 -y</span><br><span class="line">sudo yum install mysql-community-client.x86_64 -y</span><br></pre></td></tr></table></figure>
