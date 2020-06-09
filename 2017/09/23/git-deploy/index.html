@@ -85,18 +85,18 @@
 
 
 
-<meta name="description" content="server 准备工作：这些工作都在root或有管理权限的帐号下进行，下面以root为用户，切换到其他用户的时候会提示确保安装了git">
+<meta name="description" content="server 准备工作：这些工作都在root或有管理权限的帐号下进行，下面以root为用户，切换到其他用户的时候会提示">
 <meta name="keywords" content="git-deploy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用git做服务器端代码的部署">
 <meta property="og:url" content="https://wiki.deno.vip/2017/09/23/git-deploy/index.html">
 <meta property="og:site_name" content="逆光之数">
-<meta property="og:description" content="server 准备工作：这些工作都在root或有管理权限的帐号下进行，下面以root为用户，切换到其他用户的时候会提示确保安装了git">
+<meta property="og:description" content="server 准备工作：这些工作都在root或有管理权限的帐号下进行，下面以root为用户，切换到其他用户的时候会提示">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-09T08:05:08.890Z">
+<meta property="og:updated_time" content="2020-06-09T10:25:46.736Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用git做服务器端代码的部署">
-<meta name="twitter:description" content="server 准备工作：这些工作都在root或有管理权限的帐号下进行，下面以root为用户，切换到其他用户的时候会提示确保安装了git">
+<meta name="twitter:description" content="server 准备工作：这些工作都在root或有管理权限的帐号下进行，下面以root为用户，切换到其他用户的时候会提示">
 
 
 
@@ -358,8 +358,9 @@
       
 
       
-        <h3 id="server-准备工作："><a href="#server-准备工作：" class="headerlink" title="server 准备工作："></a>server 准备工作：</h3><h4 id="这些工作都在root或有管理权限的帐号下进行，下面以root为用户，切换到其他用户的时候会提示"><a href="#这些工作都在root或有管理权限的帐号下进行，下面以root为用户，切换到其他用户的时候会提示" class="headerlink" title="这些工作都在root或有管理权限的帐号下进行，下面以root为用户，切换到其他用户的时候会提示"></a>这些工作都在root或有管理权限的帐号下进行，下面以root为用户，切换到其他用户的时候会提示</h4><h4 id="确保安装了git"><a href="#确保安装了git" class="headerlink" title="确保安装了git"></a>确保安装了git</h4><a id="more"></a>
-<h4 id="为了安全起见，新建一个专门用于代码部署的无特权用户"><a href="#为了安全起见，新建一个专门用于代码部署的无特权用户" class="headerlink" title="为了安全起见，新建一个专门用于代码部署的无特权用户"></a>为了安全起见，新建一个专门用于代码部署的无特权用户</h4><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">useradd -m apps</span><br><span class="line">passwd apps //设置该用户的密码，也可根据喜好配置成免密码登陆</span><br></pre></td></tr></table></figure></code></pre><h4 id="新建一个目录作为要部署代码的根目录。"><a href="#新建一个目录作为要部署代码的根目录。" class="headerlink" title="新建一个目录作为要部署代码的根目录。"></a>新建一个目录作为要部署代码的根目录。</h4>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /apps/web/www/git</span><br><span class="line">mkdir -p /apps/web/www/html</span><br></pre></td></tr></table></figure>
+        <h3 id="server-准备工作："><a href="#server-准备工作：" class="headerlink" title="server 准备工作："></a>server 准备工作：</h3><h4 id="这些工作都在root或有管理权限的帐号下进行，下面以root为用户，切换到其他用户的时候会提示"><a href="#这些工作都在root或有管理权限的帐号下进行，下面以root为用户，切换到其他用户的时候会提示" class="headerlink" title="这些工作都在root或有管理权限的帐号下进行，下面以root为用户，切换到其他用户的时候会提示"></a>这些工作都在root或有管理权限的帐号下进行，下面以root为用户，切换到其他用户的时候会提示</h4><a id="more"></a>
+
+<h4 id="确保安装了git"><a href="#确保安装了git" class="headerlink" title="确保安装了git"></a>确保安装了git</h4><h4 id="为了安全起见，新建一个专门用于代码部署的无特权用户"><a href="#为了安全起见，新建一个专门用于代码部署的无特权用户" class="headerlink" title="为了安全起见，新建一个专门用于代码部署的无特权用户"></a>为了安全起见，新建一个专门用于代码部署的无特权用户</h4><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">useradd -m apps</span><br><span class="line">passwd apps //设置该用户的密码，也可根据喜好配置成免密码登陆</span><br></pre></td></tr></table></figure></code></pre><h4 id="新建一个目录作为要部署代码的根目录。"><a href="#新建一个目录作为要部署代码的根目录。" class="headerlink" title="新建一个目录作为要部署代码的根目录。"></a>新建一个目录作为要部署代码的根目录。</h4>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /apps/web/www/git</span><br><span class="line">mkdir -p /apps/web/www/html</span><br></pre></td></tr></table></figure>
 
 <p>  这里建立git目录和html目录，是为了将代码和.git分离出来。<br>  在nginx的root中，直接设置<code>/apps/web/www/html</code>就不用担心.git之类的问题了。</p>
 <h4 id="将这个目录的属主和属组都改为上面新建的用户apps"><a href="#将这个目录的属主和属组都改为上面新建的用户apps" class="headerlink" title="将这个目录的属主和属组都改为上面新建的用户apps"></a>将这个目录的属主和属组都改为上面新建的用户apps</h4><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /apps/web/www</span><br><span class="line">chown apps:apps git</span><br></pre></td></tr></table></figure></code></pre><h4 id="切换到部署代码的专用用户su-apps"><a href="#切换到部署代码的专用用户su-apps" class="headerlink" title="切换到部署代码的专用用户su apps"></a>切换到部署代码的专用用户<code>su apps</code></h4><h4 id="进入项目根目录，初始化为git仓库"><a href="#进入项目根目录，初始化为git仓库" class="headerlink" title="进入项目根目录，初始化为git仓库"></a>进入项目根目录，初始化为git仓库</h4><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /apps/web/www/git</span><br><span class="line">git init</span><br></pre></td></tr></table></figure></code></pre><p>  注意：这里千万不要用<code>git --bare init</code>，一旦使用后续的<code>git checkout -f</code>是检不出来代码的。</p>
