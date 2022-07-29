@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://shlmoon.github.io/"/>
-  <updated>2020-06-09T08:05:52.926Z</updated>
+  <updated>2022-07-29T08:53:50.545Z</updated>
   <id>https://shlmoon.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>kafka-python debug log</title>
+    <link href="https://shlmoon.github.io/2021/12/03/kafka-python-disable-debug-log/"/>
+    <id>https://shlmoon.github.io/2021/12/03/kafka-python-disable-debug-log/</id>
+    <published>2021-12-03T01:10:00.000Z</published>
+    <updated>2022-07-29T08:53:50.545Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="python禁掉kafka-debug日志"><a href="#python禁掉kafka-debug日志" class="headerlink" title="python禁掉kafka debug日志"></a>python禁掉kafka debug日志</h4><p>django 中使用kafka，但kafka 的debug日志会无限输出到日志文件中，非常头痛。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">INFO 2022-07-29 08:46:51,544 0cd0ec8c3b57480093f54a8907cb2a63 [base._handle_group_coordinator_response line:694] Discovered coordinator coordinator-0 for group g1</span><br><span class="line">WARNING 2022-07-29 08:46:51,544 0cd0ec8c3b57480093f54a8907cb2a63 [base.coordinator_dead line:716] Marking the coordinator dead (node coordinator-0) for group g1: Node Disconnected.</span><br><span class="line">WARNING 2022-07-29 08:46:51,544 2d9682ce3ecd4d0481e70f9acd8ebdf2 [base.coordinator_dead line:716] Marking the coordinator dead (node coordinator-0) for group g1: Node Disconnected.</span><br></pre></td></tr></table></figure><p>根本原因在于，kafka的python包中 <code>logger = logging.getLogger(&quot;kafka&quot;)</code><br>如果在django 的setting中没有定义 kafka 的logger，那会直接输出到 ROOT中。</p><p>解决方法也很简单，在setting的logging配置中配置下 kafka logger</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&quot;loggers&quot;: &#123;</span><br><span class="line">    &quot;kafka&quot;: &#123;</span><br><span class="line">        &quot;handlers&quot;: [&quot;console&quot;],</span><br><span class="line">        &quot;propagate&quot;: False,</span><br><span class="line">        &quot;level&quot;: &quot;INFO&quot;,</span><br><span class="line">    &#125;,</span><br><span class="line">    ...</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure><p>日志level，看需求，一般是INFO，不像看到相关的kafka任何信息直接使用ERROR</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;python禁掉kafka-debug日志&quot;&gt;&lt;a href=&quot;#python禁掉kafka-debug日志&quot; class=&quot;headerlink&quot; title=&quot;python禁掉kafka debug日志&quot;&gt;&lt;/a&gt;python禁掉kafka debug日志&lt;/
+      
+    
+    </summary>
+    
+    
+      <category term="kafka" scheme="https://shlmoon.github.io/tags/kafka/"/>
+    
+  </entry>
   
   <entry>
     <title>nginx log tar</title>

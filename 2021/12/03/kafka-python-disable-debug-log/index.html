@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="夜夜笙歌">
+  <meta name="keywords" content="kafka,">
 
 
 
@@ -85,13 +85,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="逆光之数">
-<meta property="og:url" content="https://shlmoon.github.io/tags/git-deploy/index.html">
+<meta name="description" content="python禁掉kafka debug日志django 中使用kafka，但kafka 的debug日志会无限输出到日志文件中，非常头痛。 123INFO 2022-07-29 08:46:51,544 0cd0ec8c3b57480093f54a8907cb2a63 [base._handle_group_coordinator_response line:694] Discovered coo">
+<meta name="keywords" content="kafka">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kafka-python debug log">
+<meta property="og:url" content="https://shlmoon.github.io/2021/12/03/kafka-python-disable-debug-log/index.html">
 <meta property="og:site_name" content="逆光之数">
+<meta property="og:description" content="python禁掉kafka debug日志django 中使用kafka，但kafka 的debug日志会无限输出到日志文件中，非常头痛。 123INFO 2022-07-29 08:46:51,544 0cd0ec8c3b57480093f54a8907cb2a63 [base._handle_group_coordinator_response line:694] Discovered coo">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2022-07-29T08:53:50.545Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="逆光之数">
+<meta name="twitter:title" content="kafka-python debug log">
+<meta name="twitter:description" content="python禁掉kafka debug日志django 中使用kafka，但kafka 的debug日志会无限输出到日志文件中，非常头痛。 123INFO 2022-07-29 08:46:51,544 0cd0ec8c3b57480093f54a8907cb2a63 [base._handle_group_coordinator_response line:694] Discovered coo">
 
 
 
@@ -121,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="https://shlmoon.github.io/tags/git-deploy/">
+  <link rel="canonical" href="https://shlmoon.github.io/2021/12/03/kafka-python-disable-debug-log/">
 
 
 
 
 
-  <title>标签: git-deploy | 逆光之数</title>
+  <title>kafka-python debug log | 逆光之数</title>
   
 
 
@@ -156,7 +161,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -272,52 +277,183 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2>git-deploy<small>标签</small>
-        </h2>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://shlmoon.github.io/2021/12/03/kafka-python-disable-debug-log/">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="slmono.hfeng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逆光之数">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2017/09/23/git-deploy/" itemprop="url">
-              
-                <span itemprop="name">使用git做服务器端代码的部署</span>
-              
-            </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">kafka-python debug log</h2>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2017-09-23T08:08:00+08:00" content="2017-09-23">
-          09-23
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-12-03T09:10:00+08:00">
+                2021-12-03
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="python禁掉kafka-debug日志"><a href="#python禁掉kafka-debug日志" class="headerlink" title="python禁掉kafka debug日志"></a>python禁掉kafka debug日志</h4><p>django 中使用kafka，但kafka 的debug日志会无限输出到日志文件中，非常头痛。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">INFO 2022-07-29 08:46:51,544 0cd0ec8c3b57480093f54a8907cb2a63 [base._handle_group_coordinator_response line:694] Discovered coordinator coordinator-0 for group g1</span><br><span class="line">WARNING 2022-07-29 08:46:51,544 0cd0ec8c3b57480093f54a8907cb2a63 [base.coordinator_dead line:716] Marking the coordinator dead (node coordinator-0) for group g1: Node Disconnected.</span><br><span class="line">WARNING 2022-07-29 08:46:51,544 2d9682ce3ecd4d0481e70f9acd8ebdf2 [base.coordinator_dead line:716] Marking the coordinator dead (node coordinator-0) for group g1: Node Disconnected.</span><br></pre></td></tr></table></figure>
+
+<p>根本原因在于，kafka的python包中 <code>logger = logging.getLogger(&quot;kafka&quot;)</code><br>如果在django 的setting中没有定义 kafka 的logger，那会直接输出到 ROOT中。</p>
+<p>解决方法也很简单，在setting的logging配置中配置下 kafka logger</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&quot;loggers&quot;: &#123;</span><br><span class="line">    &quot;kafka&quot;: &#123;</span><br><span class="line">        &quot;handlers&quot;: [&quot;console&quot;],</span><br><span class="line">        &quot;propagate&quot;: False,</span><br><span class="line">        &quot;level&quot;: &quot;INFO&quot;,</span><br><span class="line">    &#125;,</span><br><span class="line">    ...</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>日志level，看需求，一般是INFO，不像看到相关的kafka任何信息直接使用ERROR</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="http://popeye-image.deno.vip/wechat.jpg" alt="slmono.hfeng 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="http://popeye-image.deno.vip/zhifubao.jpg" alt="slmono.hfeng 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/kafka/" rel="tag"># kafka</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/22/nginx-log-tar/" rel="next" title="nginx log tar">
+                <i class="fa fa-chevron-left"></i> nginx log tar
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -325,6 +461,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -345,8 +485,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -406,6 +555,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#python禁掉kafka-debug日志"><span class="nav-number">1.</span> <span class="nav-text">python禁掉kafka debug日志</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -553,6 +718,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
