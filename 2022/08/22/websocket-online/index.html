@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="夜夜笙歌">
+  <meta name="keywords" content="websocket ping,">
 
 
 
@@ -85,13 +85,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="逆光之数">
-<meta property="og:url" content="https://shlmoon.github.io/archives/2021/index.html">
+<meta name="description" content="用户状态监测根据client的ping消息，监听用户状态 分时采集ping 消息每隔5S，采集10S内的ping消息 12345678time_now, ms_delta, listen_list = int(time.time()), 0, []while ms_delta &amp;lt; 10:    value = MQ.message    if value:        listen_lis">
+<meta name="keywords" content="websocket ping">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ws ping">
+<meta property="og:url" content="https://shlmoon.github.io/2022/08/22/websocket-online/index.html">
 <meta property="og:site_name" content="逆光之数">
+<meta property="og:description" content="用户状态监测根据client的ping消息，监听用户状态 分时采集ping 消息每隔5S，采集10S内的ping消息 12345678time_now, ms_delta, listen_list = int(time.time()), 0, []while ms_delta &amp;lt; 10:    value = MQ.message    if value:        listen_lis">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2022-09-01T03:47:30.821Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="逆光之数">
+<meta name="twitter:title" content="ws ping">
+<meta name="twitter:description" content="用户状态监测根据client的ping消息，监听用户状态 分时采集ping 消息每隔5S，采集10S内的ping消息 12345678time_now, ms_delta, listen_list = int(time.time()), 0, []while ms_delta &amp;lt; 10:    value = MQ.message    if value:        listen_lis">
 
 
 
@@ -121,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="https://shlmoon.github.io/archives/2021/">
+  <link rel="canonical" href="https://shlmoon.github.io/2022/08/22/websocket-online/">
 
 
 
 
 
-  <title>归档 | 逆光之数</title>
+  <title>ws ping | 逆光之数</title>
   
 
 
@@ -156,7 +161,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -272,72 +277,189 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        嗯..! 目前共计 14 篇日志。 继续努力。
-      </span>
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h2 class="archive-year" id="archive-year-2021">2021</h2>
-          </div>
-        
-        
-
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://shlmoon.github.io/2022/08/22/websocket-online/">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="slmono.hfeng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逆光之数">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2021/12/03/kafka-python-disable-debug-log/" itemprop="url">
-              
-                <span itemprop="name">kafka-python debug log</span>
-              
-            </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">ws ping</h2>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2021-12-03T09:10:00+08:00" content="2021-12-03">
-          12-03
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-08-22T09:10:00+08:00">
+                2022-08-22
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
 
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
+      
 
+      
+        <h3 id="用户状态监测"><a href="#用户状态监测" class="headerlink" title="用户状态监测"></a>用户状态监测</h3><p>根据client的ping消息，监听用户状态</p>
+<h3 id="分时采集ping-消息"><a href="#分时采集ping-消息" class="headerlink" title="分时采集ping 消息"></a>分时采集ping 消息</h3><p>每隔5S，采集10S内的ping消息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">time_now, ms_delta, listen_list = int(time.time()), 0, []</span><br><span class="line">while ms_delta &lt; 10:</span><br><span class="line">    value = MQ.message</span><br><span class="line">    if value:</span><br><span class="line">        listen_list.append(value)</span><br><span class="line">    ms_delta = int(time.time()) - time_now</span><br><span class="line">func(listen_list)</span><br><span class="line">time.sleep(5)</span><br></pre></td></tr></table></figure>
+
+<p>这里面有一个小技巧，采集10S内的ms，可以用时间差作为循环控制条件</p>
+<h3 id="差值思想，获取未ping的客户端（下线状态）"><a href="#差值思想，获取未ping的客户端（下线状态）" class="headerlink" title="差值思想，获取未ping的客户端（下线状态）"></a>差值思想，获取未ping的客户端（下线状态）</h3><p>上述步骤获取当前10S内的ping消息，online_list</p>
+<p>关键：通过redis获取上次前10S内的ping消息，last_online</p>
+<ul>
+<li><p>如果last_online为空，说明当前offline_list不存在。将当前的online_list存入到redis，并作为下次的last_online</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cache_key = &quot;&quot;</span><br><span class="line">   if not value_list:</span><br><span class="line">       redis_client.delete(cache_key)</span><br><span class="line"></span><br><span class="line">   with redis_client.pipeline() as pipe:</span><br><span class="line">       pipe.multi()</span><br><span class="line">       pipe.delete(cache_key)</span><br><span class="line">       pipe.sadd(cache_key, *value_list)</span><br><span class="line">       pipe.expireat(cache_key, expired_at)</span><br><span class="line">       pipe.execute()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果last_online不为空，则当前不在线状态为：<code>offline_list = last_online - online_list</code></p>
+</li>
+</ul>
+
+      
     </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="http://popeye-image.deno.vip/wechat.jpg" alt="slmono.hfeng 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="http://popeye-image.deno.vip/zhifubao.jpg" alt="slmono.hfeng 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/websocket-ping/" rel="tag"># websocket ping</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/12/03/kafka-python-disable-debug-log/" rel="next" title="kafka-python debug log">
+                <i class="fa fa-chevron-left"></i> kafka-python debug log
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -345,6 +467,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -365,8 +491,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -426,6 +561,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#用户状态监测"><span class="nav-number">1.</span> <span class="nav-text">用户状态监测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分时采集ping-消息"><span class="nav-number">2.</span> <span class="nav-text">分时采集ping 消息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#差值思想，获取未ping的客户端（下线状态）"><span class="nav-number">3.</span> <span class="nav-text">差值思想，获取未ping的客户端（下线状态）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -573,6 +724,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>https://shlmoon.github.io/2022/08/22/websocket-online/</loc>
+        <lastmod>2022-09-01T03:47:30.821Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://shlmoon.github.io/2021/12/03/kafka-python-disable-debug-log/</loc>
         <lastmod>2022-07-29T09:49:53.036Z</lastmod>
         <changefreq>weekly</changefreq>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://shlmoon.github.io/"/>
-  <updated>2022-07-29T09:49:53.036Z</updated>
+  <updated>2022-09-01T03:47:30.821Z</updated>
   <id>https://shlmoon.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ws ping</title>
+    <link href="https://shlmoon.github.io/2022/08/22/websocket-online/"/>
+    <id>https://shlmoon.github.io/2022/08/22/websocket-online/</id>
+    <published>2022-08-22T01:10:00.000Z</published>
+    <updated>2022-09-01T03:47:30.821Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="用户状态监测"><a href="#用户状态监测" class="headerlink" title="用户状态监测"></a>用户状态监测</h3><p>根据client的ping消息，监听用户状态</p><h3 id="分时采集ping-消息"><a href="#分时采集ping-消息" class="headerlink" title="分时采集ping 消息"></a>分时采集ping 消息</h3><p>每隔5S，采集10S内的ping消息</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">time_now, ms_delta, listen_list = int(time.time()), 0, []</span><br><span class="line">while ms_delta &lt; 10:</span><br><span class="line">    value = MQ.message</span><br><span class="line">    if value:</span><br><span class="line">        listen_list.append(value)</span><br><span class="line">    ms_delta = int(time.time()) - time_now</span><br><span class="line">func(listen_list)</span><br><span class="line">time.sleep(5)</span><br></pre></td></tr></table></figure><p>这里面有一个小技巧，采集10S内的ms，可以用时间差作为循环控制条件</p><h3 id="差值思想，获取未ping的客户端（下线状态）"><a href="#差值思想，获取未ping的客户端（下线状态）" class="headerlink" title="差值思想，获取未ping的客户端（下线状态）"></a>差值思想，获取未ping的客户端（下线状态）</h3><p>上述步骤获取当前10S内的ping消息，online_list</p><p>关键：通过redis获取上次前10S内的ping消息，last_online</p><ul><li><p>如果last_online为空，说明当前offline_list不存在。将当前的online_list存入到redis，并作为下次的last_online</p>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cache_key = &quot;&quot;</span><br><span class="line">   if not value_list:</span><br><span class="line">       redis_client.delete(cache_key)</span><br><span class="line"></span><br><span class="line">   with redis_client.pipeline() as pipe:</span><br><span class="line">       pipe.multi()</span><br><span class="line">       pipe.delete(cache_key)</span><br><span class="line">       pipe.sadd(cache_key, *value_list)</span><br><span class="line">       pipe.expireat(cache_key, expired_at)</span><br><span class="line">       pipe.execute()</span><br></pre></td></tr></table></figure></li><li><p>如果last_online不为空，则当前不在线状态为：<code>offline_list = last_online - online_list</code></p></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;用户状态监测&quot;&gt;&lt;a href=&quot;#用户状态监测&quot; class=&quot;headerlink&quot; title=&quot;用户状态监测&quot;&gt;&lt;/a&gt;用户状态监测&lt;/h3&gt;&lt;p&gt;根据client的ping消息，监听用户状态&lt;/p&gt;
+&lt;h3 id=&quot;分时采集ping-消息&quot;&gt;&lt;a hre
+      
+    
+    </summary>
+    
+    
+      <category term="websocket ping" scheme="https://shlmoon.github.io/tags/websocket-ping/"/>
+    
+  </entry>
   
   <entry>
     <title>kafka-python debug log</title>

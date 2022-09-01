@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[ws ping]]></title>
+    <url>%2F2022%2F08%2F22%2Fwebsocket-online%2F</url>
+    <content type="text"><![CDATA[用户状态监测根据client的ping消息，监听用户状态 分时采集ping 消息每隔5S，采集10S内的ping消息 12345678time_now, ms_delta, listen_list = int(time.time()), 0, []while ms_delta &lt; 10: value = MQ.message if value: listen_list.append(value) ms_delta = int(time.time()) - time_nowfunc(listen_list)time.sleep(5) 这里面有一个小技巧，采集10S内的ms，可以用时间差作为循环控制条件 差值思想，获取未ping的客户端（下线状态）上述步骤获取当前10S内的ping消息，online_list 关键：通过redis获取上次前10S内的ping消息，last_online 如果last_online为空，说明当前offline_list不存在。将当前的online_list存入到redis，并作为下次的last_online 12345678910cache_key = &quot;&quot; if not value_list: redis_client.delete(cache_key) with redis_client.pipeline() as pipe: pipe.multi() pipe.delete(cache_key) pipe.sadd(cache_key, *value_list) pipe.expireat(cache_key, expired_at) pipe.execute() 如果last_online不为空，则当前不在线状态为：offline_list = last_online - online_list]]></content>
+      <tags>
+        <tag>websocket ping</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[kafka-python debug log]]></title>
     <url>%2F2021%2F12%2F03%2Fkafka-python-disable-debug-log%2F</url>
     <content type="text"><![CDATA[python禁掉kafka debug日志django 中使用kafka，但kafka 的debug日志会无限输出到日志文件中，非常头痛。 123INFO 2022-07-29 08:46:51,544 0cd0ec8c3b57480093f54a8907cb2a63 [base._handle_group_coordinator_response line:694] Discovered coordinator coordinator-0 for group g1WARNING 2022-07-29 08:46:51,544 0cd0ec8c3b57480093f54a8907cb2a63 [base.coordinator_dead line:716] Marking the coordinator dead (node coordinator-0) for group g1: Node Disconnected.WARNING 2022-07-29 08:46:51,544 2d9682ce3ecd4d0481e70f9acd8ebdf2 [base.coordinator_dead line:716] Marking the coordinator dead (node coordinator-0) for group g1: Node Disconnected. 根本原因在于，kafka的python包中 logger = logging.getLogger(&quot;kafka&quot;)如果在django 的setting中没有定义 kafka 的logger，那会直接输出到 ROOT中。 解决方法也很简单，在setting的logging配置中配置下 kafka logger 12345678&quot;loggers&quot;: &#123; &quot;kafka&quot;: &#123; &quot;handlers&quot;: [&quot;console&quot;], &quot;propagate&quot;: False, &quot;level&quot;: &quot;WARNING&quot;, &#125;, ...&#125;, 或者 1logging.getLogger(&quot;kafka&quot;).setLevel(logging.WARNING) 日志level，看需求，一般是INFO，不像看到相关的kafka任何信息直接使用ERROR]]></content>
