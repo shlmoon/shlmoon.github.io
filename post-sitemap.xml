@@ -2,13 +2,13 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
-        <loc>https://shlmoon.github.io</loc>
+        <loc>https://github.deno.vip</loc>
         <changefreq>daily</changefreq>
         <priority>1</priority>
     </url>
 
     <url>
-        <loc>https://shlmoon.github.io/2022/08/22/websocket-online/</loc>
+        <loc>https://github.deno.vip/2022/08/22/websocket-online/</loc>
         <lastmod>2022-09-20T03:57:28.832Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -16,7 +16,7 @@
     </url>
 
     <url>
-        <loc>https://shlmoon.github.io/2021/12/03/kafka-python-disable-debug-log/</loc>
+        <loc>https://github.deno.vip/2021/12/03/kafka-python-disable-debug-log/</loc>
         <lastmod>2022-07-29T09:49:53.036Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -24,7 +24,7 @@
     </url>
 
     <url>
-        <loc>https://shlmoon.github.io/2017/09/23/git-deploy/</loc>
+        <loc>https://github.deno.vip/2017/09/23/git-deploy/</loc>
         <lastmod>2020-07-21T07:45:44.402Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -32,7 +32,7 @@
     </url>
 
     <url>
-        <loc>https://shlmoon.github.io/2017/09/21/communication/</loc>
+        <loc>https://github.deno.vip/2017/09/21/communication/</loc>
         <lastmod>2020-06-09T10:25:10.774Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -40,7 +40,7 @@
     </url>
 
     <url>
-        <loc>https://shlmoon.github.io/2019/12/03/openresty/</loc>
+        <loc>https://github.deno.vip/2019/12/03/openresty/</loc>
         <lastmod>2020-06-09T08:06:05.121Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -48,7 +48,7 @@
     </url>
 
     <url>
-        <loc>https://shlmoon.github.io/2019/12/02/nginx-webpage-try_file/</loc>
+        <loc>https://github.deno.vip/2019/12/02/nginx-webpage-try_file/</loc>
         <lastmod>2020-06-09T08:05:59.857Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -56,7 +56,7 @@
     </url>
 
     <url>
-        <loc>https://shlmoon.github.io/2020/02/22/nginx-log-tar/</loc>
+        <loc>https://github.deno.vip/2020/02/22/nginx-log-tar/</loc>
         <lastmod>2020-06-09T08:05:52.926Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -64,7 +64,7 @@
     </url>
 
     <url>
-        <loc>https://shlmoon.github.io/2017/09/24/linux-tips/</loc>
+        <loc>https://github.deno.vip/2017/09/24/linux-tips/</loc>
         <lastmod>2020-06-09T08:05:48.260Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -72,7 +72,7 @@
     </url>
 
     <url>
-        <loc>https://shlmoon.github.io/2019/06/22/linux-keepalive/</loc>
+        <loc>https://github.deno.vip/2019/06/22/linux-keepalive/</loc>
         <lastmod>2020-06-09T08:05:41.592Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -80,7 +80,7 @@
     </url>
 
     <url>
-        <loc>https://shlmoon.github.io/2018/11/25/linux-docker/</loc>
+        <loc>https://github.deno.vip/2018/11/25/linux-docker/</loc>
         <lastmod>2020-06-09T08:05:36.520Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -88,7 +88,7 @@
     </url>
 
     <url>
-        <loc>https://shlmoon.github.io/2019/03/22/let-encrypt/</loc>
+        <loc>https://github.deno.vip/2019/03/22/let-encrypt/</loc>
         <lastmod>2020-06-09T08:05:32.163Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -96,7 +96,7 @@
     </url>
 
     <url>
-        <loc>https://shlmoon.github.io/2019/05/12/gitlab-community/</loc>
+        <loc>https://github.deno.vip/2019/05/12/gitlab-community/</loc>
         <lastmod>2020-06-09T08:05:28.312Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -104,7 +104,7 @@
     </url>
 
     <url>
-        <loc>https://shlmoon.github.io/2017/09/22/git-tips/</loc>
+        <loc>https://github.deno.vip/2017/09/22/git-tips/</loc>
         <lastmod>2020-06-09T08:05:19.626Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -112,7 +112,7 @@
     </url>
 
     <url>
-        <loc>https://shlmoon.github.io/2018/03/22/centos-mysql/</loc>
+        <loc>https://github.deno.vip/2018/03/22/centos-mysql/</loc>
         <lastmod>2020-06-09T08:05:15.255Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>

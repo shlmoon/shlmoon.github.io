@@ -5,9 +5,9 @@
   <subtitle>逆光之数</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://shlmoon.github.io/"/>
+  <link href="https://github.deno.vip/"/>
   <updated>2022-09-20T03:57:28.832Z</updated>
-  <id>https://shlmoon.github.io/</id>
+  <id>https://github.deno.vip/</id>
   
   <author>
     <name>slmono.hfeng</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>client online 监听</title>
-    <link href="https://shlmoon.github.io/2022/08/22/websocket-online/"/>
-    <id>https://shlmoon.github.io/2022/08/22/websocket-online/</id>
+    <link href="https://github.deno.vip/2022/08/22/websocket-online/"/>
+    <id>https://github.deno.vip/2022/08/22/websocket-online/</id>
     <published>2022-08-22T01:10:00.000Z</published>
     <updated>2022-09-20T03:57:28.832Z</updated>
     
@@ -36,14 +36,14 @@
     </summary>
     
     
-      <category term="websocket ping" scheme="https://shlmoon.github.io/tags/websocket-ping/"/>
+      <category term="websocket ping" scheme="https://github.deno.vip/tags/websocket-ping/"/>
     
   </entry>
   
   <entry>
     <title>kafka-python debug log</title>
-    <link href="https://shlmoon.github.io/2021/12/03/kafka-python-disable-debug-log/"/>
-    <id>https://shlmoon.github.io/2021/12/03/kafka-python-disable-debug-log/</id>
+    <link href="https://github.deno.vip/2021/12/03/kafka-python-disable-debug-log/"/>
+    <id>https://github.deno.vip/2021/12/03/kafka-python-disable-debug-log/</id>
     <published>2021-12-03T01:10:00.000Z</published>
     <updated>2022-07-29T09:49:53.036Z</updated>
     
@@ -59,14 +59,14 @@
     </summary>
     
     
-      <category term="kafka" scheme="https://shlmoon.github.io/tags/kafka/"/>
+      <category term="kafka" scheme="https://github.deno.vip/tags/kafka/"/>
     
   </entry>
   
   <entry>
     <title>nginx log tar</title>
-    <link href="https://shlmoon.github.io/2020/02/22/nginx-log-tar/"/>
-    <id>https://shlmoon.github.io/2020/02/22/nginx-log-tar/</id>
+    <link href="https://github.deno.vip/2020/02/22/nginx-log-tar/"/>
+    <id>https://github.deno.vip/2020/02/22/nginx-log-tar/</id>
     <published>2020-02-22T01:10:00.000Z</published>
     <updated>2020-06-09T08:05:52.926Z</updated>
     
@@ -79,14 +79,14 @@
     </summary>
     
     
-      <category term="linux-tips" scheme="https://shlmoon.github.io/tags/linux-tips/"/>
+      <category term="linux-tips" scheme="https://github.deno.vip/tags/linux-tips/"/>
     
   </entry>
   
   <entry>
     <title>nginx openresty</title>
-    <link href="https://shlmoon.github.io/2019/12/03/openresty/"/>
-    <id>https://shlmoon.github.io/2019/12/03/openresty/</id>
+    <link href="https://github.deno.vip/2019/12/03/openresty/"/>
+    <id>https://github.deno.vip/2019/12/03/openresty/</id>
     <published>2019-12-03T01:10:00.000Z</published>
     <updated>2020-06-09T08:06:05.121Z</updated>
     
@@ -99,14 +99,14 @@
     </summary>
     
     
-      <category term="openresty" scheme="https://shlmoon.github.io/tags/openresty/"/>
+      <category term="openresty" scheme="https://github.deno.vip/tags/openresty/"/>
     
   </entry>
   
   <entry>
     <title>nginx web page 404</title>
-    <link href="https://shlmoon.github.io/2019/12/02/nginx-webpage-try_file/"/>
-    <id>https://shlmoon.github.io/2019/12/02/nginx-webpage-try_file/</id>
+    <link href="https://github.deno.vip/2019/12/02/nginx-webpage-try_file/"/>
+    <id>https://github.deno.vip/2019/12/02/nginx-webpage-try_file/</id>
     <published>2019-12-02T01:10:00.000Z</published>
     <updated>2020-06-09T08:05:59.857Z</updated>
     
@@ -119,14 +119,14 @@
     </summary>
     
     
-      <category term="nginx-webpage" scheme="https://shlmoon.github.io/tags/nginx-webpage/"/>
+      <category term="nginx-webpage" scheme="https://github.deno.vip/tags/nginx-webpage/"/>
     
   </entry>
   
   <entry>
     <title>linux close_wait</title>
-    <link href="https://shlmoon.github.io/2019/06/22/linux-keepalive/"/>
-    <id>https://shlmoon.github.io/2019/06/22/linux-keepalive/</id>
+    <link href="https://github.deno.vip/2019/06/22/linux-keepalive/"/>
+    <id>https://github.deno.vip/2019/06/22/linux-keepalive/</id>
     <published>2019-06-22T01:10:00.000Z</published>
     <updated>2020-06-09T08:05:41.592Z</updated>
     
@@ -146,14 +146,14 @@
     </summary>
     
     
-      <category term="linux" scheme="https://shlmoon.github.io/tags/linux/"/>
+      <category term="linux" scheme="https://github.deno.vip/tags/linux/"/>
     
   </entry>
   
   <entry>
     <title>GitLab Community Edition</title>
-    <link href="https://shlmoon.github.io/2019/05/12/gitlab-community/"/>
-    <id>https://shlmoon.github.io/2019/05/12/gitlab-community/</id>
+    <link href="https://github.deno.vip/2019/05/12/gitlab-community/"/>
+    <id>https://github.deno.vip/2019/05/12/gitlab-community/</id>
     <published>2019-05-12T11:10:00.000Z</published>
     <updated>2020-06-09T08:05:28.312Z</updated>
     
@@ -166,14 +166,14 @@
     </summary>
     
     
-      <category term="centos-gitlab" scheme="https://shlmoon.github.io/tags/centos-gitlab/"/>
+      <category term="centos-gitlab" scheme="https://github.deno.vip/tags/centos-gitlab/"/>
     
   </entry>
   
   <entry>
     <title>Let&#39;s Encrypt SSL证书</title>
-    <link href="https://shlmoon.github.io/2019/03/22/let-encrypt/"/>
-    <id>https://shlmoon.github.io/2019/03/22/let-encrypt/</id>
+    <link href="https://github.deno.vip/2019/03/22/let-encrypt/"/>
+    <id>https://github.deno.vip/2019/03/22/let-encrypt/</id>
     <published>2019-03-22T01:10:00.000Z</published>
     <updated>2020-06-09T08:05:32.163Z</updated>
     
@@ -187,14 +187,14 @@
     </summary>
     
     
-      <category term="https" scheme="https://shlmoon.github.io/tags/https/"/>
+      <category term="https" scheme="https://github.deno.vip/tags/https/"/>
     
   </entry>
   
   <entry>
     <title>django-docker镜像实践</title>
-    <link href="https://shlmoon.github.io/2018/11/25/linux-docker/"/>
-    <id>https://shlmoon.github.io/2018/11/25/linux-docker/</id>
+    <link href="https://github.deno.vip/2018/11/25/linux-docker/"/>
+    <id>https://github.deno.vip/2018/11/25/linux-docker/</id>
     <published>2018-11-25T02:10:00.000Z</published>
     <updated>2020-06-09T08:05:36.520Z</updated>
     
@@ -207,14 +207,14 @@
     </summary>
     
     
-      <category term="centos-docker" scheme="https://shlmoon.github.io/tags/centos-docker/"/>
+      <category term="centos-docker" scheme="https://github.deno.vip/tags/centos-docker/"/>
     
   </entry>
   
   <entry>
     <title>centos 安装mysql</title>
-    <link href="https://shlmoon.github.io/2018/03/22/centos-mysql/"/>
-    <id>https://shlmoon.github.io/2018/03/22/centos-mysql/</id>
+    <link href="https://github.deno.vip/2018/03/22/centos-mysql/"/>
+    <id>https://github.deno.vip/2018/03/22/centos-mysql/</id>
     <published>2018-03-22T01:10:00.000Z</published>
     <updated>2020-06-09T08:05:15.255Z</updated>
     
@@ -229,14 +229,14 @@
     </summary>
     
     
-      <category term="centos-mysql" scheme="https://shlmoon.github.io/tags/centos-mysql/"/>
+      <category term="centos-mysql" scheme="https://github.deno.vip/tags/centos-mysql/"/>
     
   </entry>
   
   <entry>
     <title>Linux小操作集锦</title>
-    <link href="https://shlmoon.github.io/2017/09/24/linux-tips/"/>
-    <id>https://shlmoon.github.io/2017/09/24/linux-tips/</id>
+    <link href="https://github.deno.vip/2017/09/24/linux-tips/"/>
+    <id>https://github.deno.vip/2017/09/24/linux-tips/</id>
     <published>2017-09-24T01:12:00.000Z</published>
     <updated>2020-06-09T08:05:48.260Z</updated>
     
@@ -249,14 +249,14 @@
     </summary>
     
     
-      <category term="linux-tips" scheme="https://shlmoon.github.io/tags/linux-tips/"/>
+      <category term="linux-tips" scheme="https://github.deno.vip/tags/linux-tips/"/>
     
   </entry>
   
   <entry>
     <title>使用git做服务器端代码的部署</title>
-    <link href="https://shlmoon.github.io/2017/09/23/git-deploy/"/>
-    <id>https://shlmoon.github.io/2017/09/23/git-deploy/</id>
+    <link href="https://github.deno.vip/2017/09/23/git-deploy/"/>
+    <id>https://github.deno.vip/2017/09/23/git-deploy/</id>
     <published>2017-09-23T00:08:00.000Z</published>
     <updated>2020-07-21T07:45:44.402Z</updated>
     
@@ -269,14 +269,14 @@
     </summary>
     
     
-      <category term="git-deploy" scheme="https://shlmoon.github.io/tags/git-deploy/"/>
+      <category term="git-deploy" scheme="https://github.deno.vip/tags/git-deploy/"/>
     
   </entry>
   
   <entry>
     <title>git单操作集锦</title>
-    <link href="https://shlmoon.github.io/2017/09/22/git-tips/"/>
-    <id>https://shlmoon.github.io/2017/09/22/git-tips/</id>
+    <link href="https://github.deno.vip/2017/09/22/git-tips/"/>
+    <id>https://github.deno.vip/2017/09/22/git-tips/</id>
     <published>2017-09-22T01:10:00.000Z</published>
     <updated>2020-06-09T08:05:19.626Z</updated>
     
@@ -291,14 +291,14 @@
     </summary>
     
     
-      <category term="linux-tips" scheme="https://shlmoon.github.io/tags/linux-tips/"/>
+      <category term="linux-tips" scheme="https://github.deno.vip/tags/linux-tips/"/>
     
   </entry>
   
   <entry>
     <title>人际交往能力：远比你想象的重要</title>
-    <link href="https://shlmoon.github.io/2017/09/21/communication/"/>
-    <id>https://shlmoon.github.io/2017/09/21/communication/</id>
+    <link href="https://github.deno.vip/2017/09/21/communication/"/>
+    <id>https://github.deno.vip/2017/09/21/communication/</id>
     <published>2017-09-21T01:09:00.000Z</published>
     <updated>2020-06-09T10:25:10.774Z</updated>
     
@@ -311,7 +311,7 @@
     </summary>
     
     
-      <category term="Interpersonal communication" scheme="https://shlmoon.github.io/tags/Interpersonal-communication/"/>
+      <category term="Interpersonal communication" scheme="https://github.deno.vip/tags/Interpersonal-communication/"/>
     
   </entry>
   
