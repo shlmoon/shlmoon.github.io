@@ -3,17 +3,23 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle: ''
-description: ''
+title: 逆光之数
+subtitle: '逆光之数'
+description: '逆光之数'
 keywords:
-author: John Doe
-language: en
-timezone: ''
+author: slmono.hfeng
+language: zh-Hans
+timezone: Asia/Shanghai
+
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 100000
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: https://shlmoon.github.io
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -101,4 +107,7 @@ theme: landscape
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: git 
+  repo: git@github.com:shlmoon/shlmoon.github.io.git
+  # repo: ssh://root@47.104.78.47:/apps/web/www/git/.git/
+  branch: main 
