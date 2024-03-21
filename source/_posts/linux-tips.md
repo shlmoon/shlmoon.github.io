@@ -47,6 +47,7 @@ ps：zsh切换到`bash-exec bash`
 2. `curl ifconfig.me`
 
 
+### mysql data
 mysql 在用source导入数据时，中文乱码。解决方案：
 `mysql -uroot -p --default-character-set=utf8`
 
