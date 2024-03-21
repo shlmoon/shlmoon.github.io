@@ -11,15 +11,18 @@ author: slmono.hfeng
 language: zh-Hans
 timezone: Asia/Shanghai
 
+
 search:
   path: search.xml
   field: post
   format: html
   limit: 100000
+  content: true
+
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://shlmoon.github.io
+url: https://shlmoon.github.io/repository
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -102,7 +105,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
