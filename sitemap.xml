@@ -146,20 +146,6 @@
 
   
   <url>
-    <loc>https://shlmoon.github.io/tags/centos-mysql/</loc>
-    <lastmod>2024-04-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://shlmoon.github.io/tags/Interpersonal-communication/</loc>
-    <lastmod>2024-04-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://shlmoon.github.io/tags/git-deploy/</loc>
     <lastmod>2024-04-15</lastmod>
     <changefreq>weekly</changefreq>
@@ -181,7 +167,14 @@
   </url>
   
   <url>
-    <loc>https://shlmoon.github.io/tags/https/</loc>
+    <loc>https://shlmoon.github.io/tags/Interpersonal-communication/</loc>
+    <lastmod>2024-04-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://shlmoon.github.io/tags/centos-mysql/</loc>
     <lastmod>2024-04-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -195,6 +188,13 @@
   </url>
   
   <url>
+    <loc>https://shlmoon.github.io/tags/centos-docker/</loc>
+    <lastmod>2024-04-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://shlmoon.github.io/tags/linux/</loc>
     <lastmod>2024-04-15</lastmod>
     <changefreq>weekly</changefreq>
@@ -202,7 +202,7 @@
   </url>
   
   <url>
-    <loc>https://shlmoon.github.io/tags/centos-docker/</loc>
+    <loc>https://shlmoon.github.io/tags/https/</loc>
     <lastmod>2024-04-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -216,14 +216,14 @@
   </url>
   
   <url>
-    <loc>https://shlmoon.github.io/tags/openresty/</loc>
+    <loc>https://shlmoon.github.io/tags/websocket-ping/</loc>
     <lastmod>2024-04-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://shlmoon.github.io/tags/websocket-ping/</loc>
+    <loc>https://shlmoon.github.io/tags/openresty/</loc>
     <lastmod>2024-04-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
