@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://shlmoon.github.io/2024/09/21/mysql-recover/</loc>
+    
+    <lastmod>2025-03-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://shlmoon.github.io/2024/09/21/centos-mysql/</loc>
+    
+    <lastmod>2025-03-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://shlmoon.github.io/about/index.html</loc>
     
     <lastmod>2024-03-25</lastmod>
@@ -83,15 +101,6 @@
   </url>
   
   <url>
-    <loc>https://shlmoon.github.io/2018/03/22/centos-mysql/</loc>
-    
-    <lastmod>2024-03-21</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://shlmoon.github.io/2019/06/22/linux-keepalive/</loc>
     
     <lastmod>2024-03-21</lastmod>
@@ -139,7 +148,7 @@
 
   <url>
     <loc>https://shlmoon.github.io/</loc>
-    <lastmod>2024-04-15</lastmod>
+    <lastmod>2025-03-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -147,84 +156,91 @@
   
   <url>
     <loc>https://shlmoon.github.io/tags/git-deploy/</loc>
-    <lastmod>2024-04-15</lastmod>
+    <lastmod>2025-03-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://shlmoon.github.io/tags/linux-tips/</loc>
-    <lastmod>2024-04-15</lastmod>
+    <lastmod>2025-03-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://shlmoon.github.io/tags/centos-gitlab/</loc>
-    <lastmod>2024-04-15</lastmod>
+    <lastmod>2025-03-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://shlmoon.github.io/tags/Interpersonal-communication/</loc>
-    <lastmod>2024-04-15</lastmod>
+    <lastmod>2025-03-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://shlmoon.github.io/tags/centos-mysql/</loc>
-    <lastmod>2024-04-15</lastmod>
+    <lastmod>2025-03-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://shlmoon.github.io/tags/kafka/</loc>
-    <lastmod>2024-04-15</lastmod>
+    <lastmod>2025-03-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://shlmoon.github.io/tags/centos-docker/</loc>
-    <lastmod>2024-04-15</lastmod>
+    <lastmod>2025-03-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://shlmoon.github.io/tags/linux/</loc>
-    <lastmod>2024-04-15</lastmod>
+    <lastmod>2025-03-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://shlmoon.github.io/tags/https/</loc>
-    <lastmod>2024-04-15</lastmod>
+    <lastmod>2025-03-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://shlmoon.github.io/tags/nginx-webpage/</loc>
-    <lastmod>2024-04-15</lastmod>
+    <lastmod>2025-03-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://shlmoon.github.io/tags/websocket-ping/</loc>
-    <lastmod>2024-04-15</lastmod>
+    <lastmod>2025-03-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://shlmoon.github.io/tags/openresty/</loc>
-    <lastmod>2024-04-15</lastmod>
+    <lastmod>2025-03-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://shlmoon.github.io/tags/mysql/</loc>
+    <lastmod>2025-03-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

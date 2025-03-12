@@ -20,17 +20,20 @@
     var CONFIG = {"hostname":"shlmoon.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="逆光之数">
-<meta property="og:type" content="website">
-<meta property="og:title" content="逆光之数">
-<meta property="og:url" content="https://shlmoon.github.io/archives/2021/index.html">
+  <meta name="description" content="误删除数据恢复">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL误操作后数据恢复（delete）">
+<meta property="og:url" content="https://shlmoon.github.io/2024/09/21/mysql-recover/index.html">
 <meta property="og:site_name" content="逆光之数">
-<meta property="og:description" content="逆光之数">
+<meta property="og:description" content="误删除数据恢复">
 <meta property="og:locale">
+<meta property="article:published_time" content="2024-09-21T11:09:00.000Z">
+<meta property="article:modified_time" content="2025-03-12T10:57:06.495Z">
 <meta property="article:author" content="slmono.hfeng">
+<meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://shlmoon.github.io/archives/2021/">
+<link rel="canonical" href="https://shlmoon.github.io/2024/09/21/mysql-recover/">
 
 
 <script id="page-configurations">
@@ -38,12 +41,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-Hans'
   };
 </script>
 
-  <title>Archive | 逆光之数</title>
+  <title>MySQL误操作后数据恢复（delete） | 逆光之数</title>
   
 
 
@@ -182,50 +185,139 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">Um..! 15 posts in total. Keep on posting.</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://shlmoon.github.io/2024/09/21/mysql-recover/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="slmono.hfeng">
+      <meta itemprop="description" content="逆光之数">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逆光之数">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MySQL误操作后数据恢复（delete）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2024-09-21 19:09:00" itemprop="dateCreated datePublished" datetime="2024-09-21T19:09:00+08:00">2024-09-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-03-12 18:57:06" itemprop="dateModified" datetime="2025-03-12T18:57:06+08:00">2025-03-12</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
+        <h3 id="误删除数据恢复"><a href="#误删除数据恢复" class="headerlink" title="误删除数据恢复"></a>误删除数据恢复</h3><span id="more"></span>
+
+<ul>
+<li><p>把binglog解析为文本<br><code>mysqlbinlog --no-defaults --base64-output=decode-rows -v -v ./mysql-bin.001250 &gt; mysql_bin_log.txt</code></p>
+<ul>
+<li>如果确定时间范围，可以使用: <code>mysqlbinlog --no-defaults --database=test_db --start-datetime=&quot;2024-09-12 00:00:00&quot; --stop-datetime=&quot;2024-09-13 00:00:00&quot; ./mysql-bin.001250 &gt; mysql_bin_log.txt</code></li>
+</ul>
+</li>
+<li><p>过滤出 test_db.test_table 的删除内容</p>
+<p>  <code>cat mysql_bin_log.txt | sed -n &#39;/### DELETE FROM </code>test_db<code>.</code>test_table<code>/,/COMMIT/p&#39;</code></p>
+<p>  确认好之后，保存到文件中: <code>cat mysql_bin_log.txt | sed -n &#39;/### DELETE FROM </code>test_db<code>.</code>test_table<code>/,/COMMIT/p&#39; &gt;&gt; mysql_delete.txt</code></p>
+</li>
+<li><p>把 DELETE 数据转换成 insert into 语句</p>
+<p>  &#96;cat table_delete.txt \</p>
+</li>
+</ul>
+<p> | sed -n ‘&#x2F;###&#x2F;p’ <br> | sed ‘s&#x2F;### &#x2F;&#x2F;g;s&#x2F;/*.<em>&#x2F;,&#x2F;g;s&#x2F;DELETE FROM&#x2F;INSERT INTO&#x2F;g;s&#x2F;WHERE&#x2F;SELECT&#x2F;g;’ <br> | gsed -r ‘s&#x2F;(@22.</em>),&#x2F;\1;&#x2F;g’ <br> | sed ‘s&#x2F;@.*&#x3D;&#x2F;&#x2F;g’ &gt; recovery.sql&#96;</p>
+<pre><code> * 所以最后(4个sed)替换的操作为:
+     * 只保留包含 ### 的行
+     * 多重操作
+         i. 删除每行的前缀注释 ###; 
+         i. 删除 数据列 对应的 mysql注释;
+         i. 替换 DELETE FROM 为 INSERT INTO;
+         i. 替换 WHERE 为 SELECT
+     * 按正则替换第 22 列(表一共22列)最后的 , 逗号为 ; 分号
+     * 删除 数据列 的前缀, 只保留对应的数据
+
+- 注意:
+* gsed 是由于MAC系统自带的 sed 没有 -r 选项, 所以安装: `brew install gnu-sed`
+* gsed -r &#39;s/(@17.*),/\1;/g&#39; 中的 @17 其实是 test_table 表的最后一列
+</code></pre>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-12-03T09:10:00+08:00"
-              content="2021-12-03">
-          12-03
-        </time>
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="slmono.hfeng WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="slmono.hfeng Alipay">
+        <p>Alipay</p>
       </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/12/03/kafka-python-disable-debug-log/" itemprop="url">
-            <span itemprop="name">kafka-python debug log</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-
-    </div>
   </div>
-  
-  
-  
+</div>
 
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/mysql/" rel="tag"># mysql</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/08/22/websocket-online/" rel="prev" title="client online 监听">
+      <i class="fa fa-chevron-left"></i> client online 监听
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/09/21/centos-mysql/" rel="next" title="MySQL误操作后数据恢复（delete）">
+      MySQL误操作后数据恢复（delete） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
 
@@ -278,6 +370,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AF%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D"><span class="nav-number">1.</span> <span class="nav-text">误删除数据恢复</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
