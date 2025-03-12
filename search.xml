@@ -5,25 +5,6 @@
     
     <entry>
       <title>MySQL误操作后数据恢复（delete）</title>
-      <link href="/2024/09/21/centos-mysql/"/>
-      <url>/2024/09/21/centos-mysql/</url>
-      
-        <content type="html"><![CDATA[<h3 id="误删除数据恢复"><a href="#误删除数据恢复" class="headerlink" title="误删除数据恢复"></a>误删除数据恢复</h3><span id="more"></span><ul><li><p>把binglog解析为文本<br><code>mysqlbinlog --no-defaults --base64-output=decode-rows -v -v ./mysql-bin.001250 &gt; mysql_bin_log.txt</code></p><ul><li>如果确定时间范围，可以使用: <code>mysqlbinlog --no-defaults --database=test_db --start-datetime=&quot;2024-09-12 00:00:00&quot; --stop-datetime=&quot;2024-09-13 00:00:00&quot; ./mysql-bin.001250 &gt; mysql_bin_log.txt</code></li></ul></li><li><p>过滤出 test_db.test_table 的删除内容</p><p>  <code>cat mysql_bin_log.txt | sed -n &#39;/### DELETE FROM </code>test_db<code>.</code>test_table<code>/,/COMMIT/p&#39;</code></p><p>  确认好之后，保存到文件中: <code>cat mysql_bin_log.txt | sed -n &#39;/### DELETE FROM </code>test_db<code>.</code>test_table<code>/,/COMMIT/p&#39; &gt;&gt; mysql_delete.txt</code></p></li><li><p>把 DELETE 数据转换成 insert into 语句</p><p>  &#96;cat table_delete.txt \</p></li></ul><p> | sed -n ‘&#x2F;###&#x2F;p’ <br> | sed ‘s&#x2F;### &#x2F;&#x2F;g;s&#x2F;/*.<em>&#x2F;,&#x2F;g;s&#x2F;DELETE FROM&#x2F;INSERT INTO&#x2F;g;s&#x2F;WHERE&#x2F;SELECT&#x2F;g;’ <br> | gsed -r ‘s&#x2F;(@22.</em>),&#x2F;\1;&#x2F;g’ <br> | sed ‘s&#x2F;@.*&#x3D;&#x2F;&#x2F;g’ &gt; recovery.sql&#96;</p><pre><code> * 所以最后(4个sed)替换的操作为:     * 只保留包含 ### 的行     * 多重操作         i. 删除每行的前缀注释 ###;          i. 删除 数据列 对应的 mysql注释;         i. 替换 DELETE FROM 为 INSERT INTO;         i. 替换 WHERE 为 SELECT     * 按正则替换第 22 列(表一共22列)最后的 , 逗号为 ; 分号     * 删除 数据列 的前缀, 只保留对应的数据- 注意:* gsed 是由于MAC系统自带的 sed 没有 -r 选项, 所以安装: `brew install gnu-sed`* gsed -r &#39;s/(@17.*),/\1;/g&#39; 中的 @17 其实是 test_table 表的最后一列</code></pre>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> mysql </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>MySQL误操作后数据恢复（delete）</title>
       <link href="/2024/09/21/mysql-recover/"/>
       <url>/2024/09/21/mysql-recover/</url>
       
@@ -205,6 +186,25 @@
         <tags>
             
             <tag> centos-docker </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>centos 安装mysql</title>
+      <link href="/2018/03/22/centos-mysql/"/>
+      <url>/2018/03/22/centos-mysql/</url>
+      
+        <content type="html"><![CDATA[<p>注：该文档只适用centos7以下（不包括centos7），安装mysql5.6。文档中的mysql5.6相对于mysql5.7存在一些意想不到的问题。比如int类型的获取到undefined会被mysql处理成default值。</p><h4 id="检测系统是否安装mysql"><a href="#检测系统是否安装mysql" class="headerlink" title="检测系统是否安装mysql"></a>检测系统是否安装mysql</h4><p><code>yum list installed | grep mysql</code></p><h4 id="安装mysql安装包"><a href="#安装mysql安装包" class="headerlink" title="安装mysql安装包"></a>安装mysql安装包</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget http://repo.mysql.com/mysql-community-release-el6-5.noarch.rpm</span><br><span class="line">rpm -ivh mysql-community-release-el6-5.noarch.rpm</span><br></pre></td></tr></table></figure><span id="more"></span><h4 id="查看可安装的mysql列表"><a href="#查看可安装的mysql列表" class="headerlink" title="查看可安装的mysql列表"></a>查看可安装的mysql列表</h4><p><code>yum list|grep mysql</code>选择需要安装，一般只需要安装client和server即可。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install mysql-community-server.x86_64 -y</span><br><span class="line">sudo yum install mysql-community-client.x86_64 -y</span><br></pre></td></tr></table></figure><h4 id="启动mysql"><a href="#启动mysql" class="headerlink" title="启动mysql"></a>启动mysql</h4><p><code>service mysqld start</code></p><h4 id="mysql设置密码"><a href="#mysql设置密码" class="headerlink" title="mysql设置密码"></a>mysql设置密码</h4><p>mysql刚刚安装完的时候，root用户的密码默认是空的。需要用mysql的root用户登录，并修改密码：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p</span><br><span class="line">use mysql;</span><br><span class="line">update user set password=PASSWORD(&quot;输入root用户密码&quot;) where User=&#x27;root&#x27;;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure><h4 id="查看mysql是否自启动-并且设置开启自启动"><a href="#查看mysql是否自启动-并且设置开启自启动" class="headerlink" title="查看mysql是否自启动,并且设置开启自启动"></a>查看mysql是否自启动,并且设置开启自启动</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chkconfig --list | grep mysqld</span><br><span class="line">chkconfig mysqld on</span><br></pre></td></tr></table></figure><h4 id="mysql安全设置"><a href="#mysql安全设置" class="headerlink" title="mysql安全设置"></a>mysql安全设置</h4><p><code>mysql_secure_installation</code></p><p>ps：在mysql安全设置中，不要允许root用户远程登陆。</p><h4 id="mysql设置远程登陆用户"><a href="#mysql设置远程登陆用户" class="headerlink" title="mysql设置远程登陆用户"></a>mysql设置远程登陆用户</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GRANT ALL PRIVILEGES ON *.* TO admin@&quot;%&quot; IDENTIFIED BY &#x27;password123&#x27; WITH GRANT OPTION;</span><br><span class="line">update db set host = &#x27;%&#x27; where user = &#x27;admin&#x27;;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> centos-mysql </tag>
             
         </tags>
       

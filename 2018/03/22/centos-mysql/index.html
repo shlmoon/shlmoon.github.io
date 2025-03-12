@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"shlmoon.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="误删除数据恢复">
+  <meta name="description" content="注：该文档只适用centos7以下（不包括centos7），安装mysql5.6。文档中的mysql5.6相对于mysql5.7存在一些意想不到的问题。比如int类型的获取到undefined会被mysql处理成default值。 检测系统是否安装mysqlyum list installed | grep mysql 安装mysql安装包12wget http:&#x2F;&#x2F;repo.mysql.com&#x2F;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MySQL误操作后数据恢复（delete）">
-<meta property="og:url" content="https://shlmoon.github.io/2024/09/21/centos-mysql/index.html">
+<meta property="og:title" content="centos 安装mysql">
+<meta property="og:url" content="https://shlmoon.github.io/2018/03/22/centos-mysql/index.html">
 <meta property="og:site_name" content="逆光之数">
-<meta property="og:description" content="误删除数据恢复">
+<meta property="og:description" content="注：该文档只适用centos7以下（不包括centos7），安装mysql5.6。文档中的mysql5.6相对于mysql5.7存在一些意想不到的问题。比如int类型的获取到undefined会被mysql处理成default值。 检测系统是否安装mysqlyum list installed | grep mysql 安装mysql安装包12wget http:&#x2F;&#x2F;repo.mysql.com&#x2F;">
 <meta property="og:locale">
-<meta property="article:published_time" content="2024-09-21T11:09:00.000Z">
-<meta property="article:modified_time" content="2025-03-12T10:56:42.476Z">
+<meta property="article:published_time" content="2018-03-22T01:10:00.000Z">
+<meta property="article:modified_time" content="2025-03-12T10:58:49.809Z">
 <meta property="article:author" content="slmono.hfeng">
-<meta property="article:tag" content="mysql">
+<meta property="article:tag" content="centos-mysql">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://shlmoon.github.io/2024/09/21/centos-mysql/">
+<link rel="canonical" href="https://shlmoon.github.io/2018/03/22/centos-mysql/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>MySQL误操作后数据恢复（delete） | 逆光之数</title>
+  <title>centos 安装mysql | 逆光之数</title>
   
 
 
@@ -192,7 +192,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://shlmoon.github.io/2024/09/21/centos-mysql/">
+    <link itemprop="mainEntityOfPage" href="https://shlmoon.github.io/2018/03/22/centos-mysql/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -205,7 +205,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          MySQL误操作后数据恢复（delete）
+          centos 安装mysql
         </h1>
 
         <div class="post-meta">
@@ -215,14 +215,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2024-09-21 19:09:00" itemprop="dateCreated datePublished" datetime="2024-09-21T19:09:00+08:00">2024-09-21</time>
+              <time title="Created: 2018-03-22 09:10:00" itemprop="dateCreated datePublished" datetime="2018-03-22T09:10:00+08:00">2018-03-22</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-03-12 18:56:42" itemprop="dateModified" datetime="2025-03-12T18:56:42+08:00">2025-03-12</time>
+                <time title="Modified: 2025-03-12 18:58:49" itemprop="dateModified" datetime="2025-03-12T18:58:49+08:00">2025-03-12</time>
               </span>
 
           
@@ -236,37 +236,24 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="误删除数据恢复"><a href="#误删除数据恢复" class="headerlink" title="误删除数据恢复"></a>误删除数据恢复</h3><span id="more"></span>
+        <p>注：该文档只适用centos7以下（不包括centos7），安装mysql5.6。文档中的mysql5.6相对于mysql5.7存在一些意想不到的问题。比如int类型的获取到undefined会被mysql处理成default值。</p>
+<h4 id="检测系统是否安装mysql"><a href="#检测系统是否安装mysql" class="headerlink" title="检测系统是否安装mysql"></a>检测系统是否安装mysql</h4><p><code>yum list installed | grep mysql</code></p>
+<h4 id="安装mysql安装包"><a href="#安装mysql安装包" class="headerlink" title="安装mysql安装包"></a>安装mysql安装包</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget http://repo.mysql.com/mysql-community-release-el6-5.noarch.rpm</span><br><span class="line">rpm -ivh mysql-community-release-el6-5.noarch.rpm</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li><p>把binglog解析为文本<br><code>mysqlbinlog --no-defaults --base64-output=decode-rows -v -v ./mysql-bin.001250 &gt; mysql_bin_log.txt</code></p>
-<ul>
-<li>如果确定时间范围，可以使用: <code>mysqlbinlog --no-defaults --database=test_db --start-datetime=&quot;2024-09-12 00:00:00&quot; --stop-datetime=&quot;2024-09-13 00:00:00&quot; ./mysql-bin.001250 &gt; mysql_bin_log.txt</code></li>
-</ul>
-</li>
-<li><p>过滤出 test_db.test_table 的删除内容</p>
-<p>  <code>cat mysql_bin_log.txt | sed -n &#39;/### DELETE FROM </code>test_db<code>.</code>test_table<code>/,/COMMIT/p&#39;</code></p>
-<p>  确认好之后，保存到文件中: <code>cat mysql_bin_log.txt | sed -n &#39;/### DELETE FROM </code>test_db<code>.</code>test_table<code>/,/COMMIT/p&#39; &gt;&gt; mysql_delete.txt</code></p>
-</li>
-<li><p>把 DELETE 数据转换成 insert into 语句</p>
-<p>  &#96;cat table_delete.txt \</p>
-</li>
-</ul>
-<p> | sed -n ‘&#x2F;###&#x2F;p’ <br> | sed ‘s&#x2F;### &#x2F;&#x2F;g;s&#x2F;/*.<em>&#x2F;,&#x2F;g;s&#x2F;DELETE FROM&#x2F;INSERT INTO&#x2F;g;s&#x2F;WHERE&#x2F;SELECT&#x2F;g;’ <br> | gsed -r ‘s&#x2F;(@22.</em>),&#x2F;\1;&#x2F;g’ <br> | sed ‘s&#x2F;@.*&#x3D;&#x2F;&#x2F;g’ &gt; recovery.sql&#96;</p>
-<pre><code> * 所以最后(4个sed)替换的操作为:
-     * 只保留包含 ### 的行
-     * 多重操作
-         i. 删除每行的前缀注释 ###; 
-         i. 删除 数据列 对应的 mysql注释;
-         i. 替换 DELETE FROM 为 INSERT INTO;
-         i. 替换 WHERE 为 SELECT
-     * 按正则替换第 22 列(表一共22列)最后的 , 逗号为 ; 分号
-     * 删除 数据列 的前缀, 只保留对应的数据
+<span id="more"></span>
 
-- 注意:
-* gsed 是由于MAC系统自带的 sed 没有 -r 选项, 所以安装: `brew install gnu-sed`
-* gsed -r &#39;s/(@17.*),/\1;/g&#39; 中的 @17 其实是 test_table 表的最后一列
-</code></pre>
+<h4 id="查看可安装的mysql列表"><a href="#查看可安装的mysql列表" class="headerlink" title="查看可安装的mysql列表"></a>查看可安装的mysql列表</h4><p><code>yum list|grep mysql</code>选择需要安装，一般只需要安装client和server即可。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install mysql-community-server.x86_64 -y</span><br><span class="line">sudo yum install mysql-community-client.x86_64 -y</span><br></pre></td></tr></table></figure>
+
+<h4 id="启动mysql"><a href="#启动mysql" class="headerlink" title="启动mysql"></a>启动mysql</h4><p><code>service mysqld start</code></p>
+<h4 id="mysql设置密码"><a href="#mysql设置密码" class="headerlink" title="mysql设置密码"></a>mysql设置密码</h4><p>mysql刚刚安装完的时候，root用户的密码默认是空的。需要用mysql的root用户登录，并修改密码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p</span><br><span class="line">use mysql;</span><br><span class="line">update user set password=PASSWORD(&quot;输入root用户密码&quot;) where User=&#x27;root&#x27;;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看mysql是否自启动-并且设置开启自启动"><a href="#查看mysql是否自启动-并且设置开启自启动" class="headerlink" title="查看mysql是否自启动,并且设置开启自启动"></a>查看mysql是否自启动,并且设置开启自启动</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chkconfig --list | grep mysqld</span><br><span class="line">chkconfig mysqld on</span><br></pre></td></tr></table></figure>
+
+<h4 id="mysql安全设置"><a href="#mysql安全设置" class="headerlink" title="mysql安全设置"></a>mysql安全设置</h4><p><code>mysql_secure_installation</code></p>
+<p>ps：在mysql安全设置中，不要允许root用户远程登陆。</p>
+<h4 id="mysql设置远程登陆用户"><a href="#mysql设置远程登陆用户" class="headerlink" title="mysql设置远程登陆用户"></a>mysql设置远程登陆用户</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GRANT ALL PRIVILEGES ON *.* TO admin@&quot;%&quot; IDENTIFIED BY &#x27;password123&#x27; WITH GRANT OPTION;</span><br><span class="line">update db set host = &#x27;%&#x27; where user = &#x27;admin&#x27;;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -296,7 +283,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/mysql/" rel="tag"># mysql</a>
+              <a href="/tags/centos-mysql/" rel="tag"># centos-mysql</a>
           </div>
 
         
@@ -305,10 +292,13 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2024/09/21/mysql-recover/" rel="prev" title="MySQL误操作后数据恢复（delete）">
-      <i class="fa fa-chevron-left"></i> MySQL误操作后数据恢复（delete）
+    <a href="/2017/09/24/linux-tips/" rel="prev" title="Linux小操作集锦">
+      <i class="fa fa-chevron-left"></i> Linux小操作集锦
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2018/11/25/linux-docker/" rel="next" title="django-docker镜像实践">
+      django-docker镜像实践 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -367,7 +357,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AF%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D"><span class="nav-number">1.</span> <span class="nav-text">误删除数据恢复</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85mysql"><span class="nav-number">1.</span> <span class="nav-text">检测系统是否安装mysql</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85mysql%E5%AE%89%E8%A3%85%E5%8C%85"><span class="nav-number">2.</span> <span class="nav-text">安装mysql安装包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%8F%AF%E5%AE%89%E8%A3%85%E7%9A%84mysql%E5%88%97%E8%A1%A8"><span class="nav-number">3.</span> <span class="nav-text">查看可安装的mysql列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8mysql"><span class="nav-number">4.</span> <span class="nav-text">启动mysql</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mysql%E8%AE%BE%E7%BD%AE%E5%AF%86%E7%A0%81"><span class="nav-number">5.</span> <span class="nav-text">mysql设置密码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8Bmysql%E6%98%AF%E5%90%A6%E8%87%AA%E5%90%AF%E5%8A%A8-%E5%B9%B6%E4%B8%94%E8%AE%BE%E7%BD%AE%E5%BC%80%E5%90%AF%E8%87%AA%E5%90%AF%E5%8A%A8"><span class="nav-number">6.</span> <span class="nav-text">查看mysql是否自启动,并且设置开启自启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mysql%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE"><span class="nav-number">7.</span> <span class="nav-text">mysql安全设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mysql%E8%AE%BE%E7%BD%AE%E8%BF%9C%E7%A8%8B%E7%99%BB%E9%99%86%E7%94%A8%E6%88%B7"><span class="nav-number">8.</span> <span class="nav-text">mysql设置远程登陆用户</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
