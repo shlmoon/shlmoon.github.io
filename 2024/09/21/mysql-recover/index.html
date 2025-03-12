@@ -28,7 +28,7 @@
 <meta property="og:description" content="误删除数据恢复">
 <meta property="og:locale">
 <meta property="article:published_time" content="2024-09-21T11:09:00.000Z">
-<meta property="article:modified_time" content="2025-03-12T10:57:06.495Z">
+<meta property="article:modified_time" content="2025-03-12T11:01:48.849Z">
 <meta property="article:author" content="slmono.hfeng">
 <meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary">
@@ -222,7 +222,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-03-12 18:57:06" itemprop="dateModified" datetime="2025-03-12T18:57:06+08:00">2025-03-12</time>
+                <time title="Modified: 2025-03-12 19:01:48" itemprop="dateModified" datetime="2025-03-12T19:01:48+08:00">2025-03-12</time>
               </span>
 
           
@@ -249,24 +249,27 @@
 <p>  确认好之后，保存到文件中: <code>cat mysql_bin_log.txt | sed -n &#39;/### DELETE FROM </code>test_db<code>.</code>test_table<code>/,/COMMIT/p&#39; &gt;&gt; mysql_delete.txt</code></p>
 </li>
 <li><p>把 DELETE 数据转换成 insert into 语句</p>
-<p>  &#96;cat table_delete.txt \</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cat table_delete.txt \</span><br><span class="line">| sed -n &#x27;/###/p&#x27; \</span><br><span class="line">| sed &#x27;s/### //g;s/\/\*.*/,/g;s/DELETE FROM/INSERT INTO/g;s/WHERE/SELECT/g;&#x27; \</span><br><span class="line">| gsed -r &#x27;s/(@22.*),/\1;/g&#x27; \</span><br><span class="line">| sed &#x27;s/@.*=//g&#x27; &gt; recovery.sql</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>所以最后(4个sed)替换的操作为:<ul>
+<li>只保留包含 ### 的行</li>
+<li>多重操作<br>  i. 删除每行的前缀注释 ###;<br>  i. 删除 数据列 对应的 mysql注释;<br>  i. 替换 DELETE FROM 为 INSERT INTO;<br>  i. 替换 WHERE 为 SELECT</li>
+<li>按正则替换第 22 列(表一共22列)最后的 , 逗号为 ; 分号</li>
+<li>删除 数据列 的前缀, 只保留对应的数据</li>
+</ul>
 </li>
 </ul>
-<p> | sed -n ‘&#x2F;###&#x2F;p’ <br> | sed ‘s&#x2F;### &#x2F;&#x2F;g;s&#x2F;/*.<em>&#x2F;,&#x2F;g;s&#x2F;DELETE FROM&#x2F;INSERT INTO&#x2F;g;s&#x2F;WHERE&#x2F;SELECT&#x2F;g;’ <br> | gsed -r ‘s&#x2F;(@22.</em>),&#x2F;\1;&#x2F;g’ <br> | sed ‘s&#x2F;@.*&#x3D;&#x2F;&#x2F;g’ &gt; recovery.sql&#96;</p>
-<pre><code> * 所以最后(4个sed)替换的操作为:
-     * 只保留包含 ### 的行
-     * 多重操作
-         i. 删除每行的前缀注释 ###; 
-         i. 删除 数据列 对应的 mysql注释;
-         i. 替换 DELETE FROM 为 INSERT INTO;
-         i. 替换 WHERE 为 SELECT
-     * 按正则替换第 22 列(表一共22列)最后的 , 逗号为 ; 分号
-     * 删除 数据列 的前缀, 只保留对应的数据
-
-- 注意:
-* gsed 是由于MAC系统自带的 sed 没有 -r 选项, 所以安装: `brew install gnu-sed`
-* gsed -r &#39;s/(@17.*),/\1;/g&#39; 中的 @17 其实是 test_table 表的最后一列
-</code></pre>
+<ul>
+<li>注意:</li>
+</ul>
+<ul>
+<li>gsed 是由于MAC系统自带的 sed 没有 -r 选项, 所以安装: <code>brew install gnu-sed</code></li>
+<li>gsed -r ‘s&#x2F;(@17.*),&#x2F;\1;&#x2F;g’ 中的 @17 其实是 test_table 表的最后一列</li>
+</ul>
+</li>
+</ul>
 
     </div>
 
