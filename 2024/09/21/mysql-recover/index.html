@@ -28,7 +28,7 @@
 <meta property="og:description" content="误删除数据恢复">
 <meta property="og:locale">
 <meta property="article:published_time" content="2024-09-21T11:09:00.000Z">
-<meta property="article:modified_time" content="2025-03-19T08:26:16.880Z">
+<meta property="article:modified_time" content="2025-03-19T08:27:50.915Z">
 <meta property="article:author" content="slmono.hfeng">
 <meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary">
@@ -222,7 +222,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-03-19 16:26:16" itemprop="dateModified" datetime="2025-03-19T16:26:16+08:00">2025-03-19</time>
+                <time title="Modified: 2025-03-19 16:27:50" itemprop="dateModified" datetime="2025-03-19T16:27:50+08:00">2025-03-19</time>
               </span>
 
           
@@ -242,9 +242,9 @@
 <li><p>把binglog解析为文本</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqlbinlog --no-defaults --base64-output=decode-rows -v -v ./mysql-bin.001250 &gt; mysql_bin_log.txt</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>如果确定时间范围，可以使用: <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqlbinlog --no-defaults --database=test_db --start-datetime=&quot;2024-09-12 00:00:00&quot; --stop-datetime=&quot;2024-09-13 00:00:00&quot; ./mysql-bin.001250 &gt; mysql_bin_log.txt</span><br></pre></td></tr></table></figure></li>
-</ul>
+<p>如果确定时间范围，可以使用: </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqlbinlog --no-defaults --database=test_db --start-datetime=&quot;2024-09-12 00:00:00&quot; --stop-datetime=&quot;2024-09-13 00:00:00&quot; ./mysql-bin.001250 &gt; mysql_bin_log.txt</span><br></pre></td></tr></table></figure>
+
 </li>
 <li><p>过滤出 <code>test_db.test_table</code> 的删除内容</p>
   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat mysql_bin_log.txt | sed -n &#x27;/### DELETE FROM `test_db`.`test_table`/,/COMMIT/p&#x27;</span><br></pre></td></tr></table></figure>
